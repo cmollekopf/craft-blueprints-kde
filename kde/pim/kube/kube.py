@@ -16,6 +16,7 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["libs/qt5/qtquickcontrols2"] = "default"
         self.runtimeDependencies["libs/qt5/qtsvg"] = "default"
         self.runtimeDependencies["libs/qt5/qtwinextras"] = "default"
+        self.runtimeDependencies["libs/qt5/qtwebengine"] = "default"
         self.buildDependencies["frameworks/tier1/kcoreaddons"] = "default"
         self.buildDependencies["kde/pim/kmime"] = "default"
         self.buildDependencies["kde/pim/sink"] = "default"

@@ -20,6 +20,7 @@ class subinfo(info.infoclass):
         self.buildDependencies["kde/pim/kmime"] = "default"
         self.buildDependencies["kde/pim/sink"] = "default"
         self.buildDependencies["kde/pim/kasync"] = "default"
+        self.runtimeDependencies["win32libs/gpgme"] = "default"
 
 
 from Package.CMakePackageBase import *

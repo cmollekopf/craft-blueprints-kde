@@ -15,6 +15,9 @@ class subinfo(info.infoclass):
         self.buildDependencies["kde/pim/kimap2"] = "default"
         self.buildDependencies["kde/pim/kdav2"] = "default"
         self.buildDependencies["kde/pim/kasync"] = "default"
+        self.buildDependencies["kde/pim/kcontacts"] = "default"
+        self.buildDependencies["kde/pim/flatbuffers"] = "default"
+        self.buildDependencies["win32libs/lmdb"] = "default"
 
 
 from Package.CMakePackageBase import *

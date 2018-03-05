@@ -22,7 +22,10 @@ class subinfo(info.infoclass):
         self.buildDependencies["kde/pim/sink"] = "default"
         self.buildDependencies["kde/pim/kasync"] = "default"
         self.buildDependencies["applications/gpgmepp"] = "default"
-        self.runtimeDependencies["win32libs/gpgme"] = "default"
+        if CraftCore.compiler.isGCCLike():
+            self.runtimeDependencies["autotools/gpgme-src"] = "default"
+        else:
+            self.runtimeDependencies["win32libs/gpgme"] = "default"
 
 
 from Package.CMakePackageBase import *

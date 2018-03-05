@@ -2,7 +2,7 @@ import info
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.svnTargets['develop'] = "git://anongit.kde.org/kube"
+        self.svnTargets['develop'] = "git://anongit.kde.org/kube|develop"
         self.defaultTarget = 'develop'
         self.description = "Kube"
 

@@ -2,7 +2,7 @@ import info
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.svnTargets['develop'] = "git://anongit.kde.org/sink"
+        self.svnTargets['develop'] = "git://anongit.kde.org/sink|develop"
         self.defaultTarget = 'develop'
         self.description = "Sink"
 
@@ -18,6 +18,7 @@ class subinfo(info.infoclass):
         self.buildDependencies["kde/pim/kcontacts"] = "default"
         self.buildDependencies["kde/pim/flatbuffers"] = "default"
         self.buildDependencies["win32libs/lmdb"] = "default"
+        self.buildDependencies["win32libs/xapian-core"] = "default"
 
 
 from Package.CMakePackageBase import *

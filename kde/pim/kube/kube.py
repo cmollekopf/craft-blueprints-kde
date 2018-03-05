@@ -21,6 +21,7 @@ class subinfo(info.infoclass):
         self.buildDependencies["kde/pim/kmime"] = "default"
         self.buildDependencies["kde/pim/sink"] = "default"
         self.buildDependencies["kde/pim/kasync"] = "default"
+        self.buildDependencies["applications/gpgmepp"] = "default"
         self.runtimeDependencies["win32libs/gpgme"] = "default"
 
 

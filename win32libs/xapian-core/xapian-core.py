@@ -1,7 +1,6 @@
 import info
 
-from Package.CMakePackageBase import *
-
+#from Package.CMakePackageBase import *
 
 class subinfo(info.infoclass):
     def setTargets(self):
@@ -9,7 +8,7 @@ class subinfo(info.infoclass):
         self.targetDigests['1.2.24'] = '5c63be033157e030f41e128956b873fbd9ad6a1c'
         self.targetInstSrc['1.2.24'] = 'xapian-core-1.2.24'
         self.description = "Open Source Search Engine library"
-        self.patchToApply['1.2.24'] = [("xapian-core-1.2.24-20170626.diff", 1)]
+        #self.patchToApply['1.2.24'] = [("xapian-core-1.2.24-20170626.diff", 1)]
         self.defaultTarget = '1.2.24'
 
     def setDependencies(self):
@@ -17,6 +16,13 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["virtual/base"] = "default"
 
 
-class Package(CMakePackageBase):
+#class Package(CMakePackageBase):
+#    def __init__(self, **args):
+#        CMakePackageBase.__init__(self)
+
+from Package.AutoToolsPackageBase import *
+
+class Package(AutoToolsPackageBase):
     def __init__(self, **args):
-        CMakePackageBase.__init__(self)
+        AutoToolsPackageBase.__init__(self)
+        #self.subinfo.options.configure.args += " --disable-static --enable-shared "

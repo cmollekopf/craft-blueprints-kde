@@ -2,7 +2,7 @@ import info
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.svnTargets['master'] = "https://github.com/google/flatbuffers"
+        self.svnTargets['master'] = "https://github.com/google/flatbuffers.git"
         self.defaultTarget = 'master'
         self.description = "flatbuffers"
 

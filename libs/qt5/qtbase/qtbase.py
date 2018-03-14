@@ -15,13 +15,16 @@ class subinfo(info.infoclass):
             elif qtVer >= CraftVersion("5.10"):
                 self.patchToApply[ver] = [
                     ("qdbus-manager-quit-5.7.patch", 1), # https://phabricator.kde.org/D2545#69186
+                    ("0001-Fix-private-headers.patch", 1),  # https://bugreports.qt.io/browse/QTBUG-37417
+                    ("workaround-mingw-egl.diff", 1)
                 ]
-            elif qtVer >= CraftVersion("5.9.4"):
-                self.patchLevel[ver] = 1
+            elif qtVer >= CraftVersion("5.9.4") or qtVer == CraftVersion("5.9"):
                 self.patchToApply[ver] = [
                     ("qdbus-manager-quit-5.7.patch", 1),  # https://phabricator.kde.org/D2545#69186
                     ("0001-Fix-private-headers.patch", 1),  # https://bugreports.qt.io/browse/QTBUG-37417
-                    ("0001-Add-APPDIR-data-APPNAME-5.9.4.patch", 1)]  # https://codereview.qt-project.org/#/c/197855/
+                    ("workaround-mingw-egl-qt5.9.4.diff", 1),
+                    ("0001-Add-APPDIR-data-APPNAME-5.9.4.patch", 1),  # https://codereview.qt-project.org/#/c/197855/
+                ]
             elif qtVer >= CraftVersion("5.9.3"):
                 self.patchToApply[ver] = [
                     ("qdbus-manager-quit-5.7.patch", 1),  # https://phabricator.kde.org/D2545#69186
@@ -61,20 +64,22 @@ class subinfo(info.infoclass):
                     ("fix-angle-mingw-5.6.2-20161027.diff", 1),
                     ("qdbus-manager-quit-5.7.patch", 1)  # https://phabricator.kde.org/D2545#69186
                 ]
+
+        self.patchLevel["5.9.4"] = 3
         self.description = "a cross-platform application framework"
 
     def setDependencies(self):
         if CraftCore.settings.getboolean("Packager", "UseCache") and not CraftCore.settings.getboolean("QtSDK", "Enabled", False):
-            self.buildDependencies["dev-util/qtbinpatcher"] = "default"
-        self.runtimeDependencies["virtual/base"] = "default"
-        self.buildDependencies["dev-util/perl"] = "default"
-        self.buildDependencies["dev-util/winflexbison"] = "default"
+            self.buildDependencies["dev-util/qtbinpatcher"] = None
+        self.runtimeDependencies["virtual/base"] = None
+        self.buildDependencies["dev-util/perl"] = None
+        self.buildDependencies["dev-util/winflexbison"] = None
         if not self.options.buildStatic:
-            self.runtimeDependencies["win32libs/openssl"] = "default"
-            self.runtimeDependencies["win32libs/dbus"] = "default"
-            self.runtimeDependencies["binary/mysql"] = "default"
-            self.runtimeDependencies["win32libs/icu"] = "default"
-            self.runtimeDependencies["win32libs/zlib"] = "default"
+            self.runtimeDependencies["win32libs/openssl"] = None if CraftVersion(self.buildTarget) < CraftVersion("5.10") else "1.1"
+            self.runtimeDependencies["win32libs/dbus"] = None
+            self.runtimeDependencies["binary/mysql"] = None
+            self.runtimeDependencies["win32libs/icu"] = None
+            self.runtimeDependencies["win32libs/zlib"] = None
 
 
 class QtPackage(Qt5CorePackageBase):
@@ -93,12 +98,14 @@ class QtPackage(Qt5CorePackageBase):
             return False
         self.enterBuildDir()
         if OsUtils.isWin():
-            configure = os.path.join(self.sourceDir(), "configure.bat").replace("/", "\\")
-            if not os.path.exists(os.path.join(self.sourceDir(), ".gitignore")):  # force bootstrap of configure.exe
-                with open(os.path.join(self.sourceDir(), ".gitignore"), "wt+") as bootstrap:
-                    bootstrap.write("Force Bootstrap")
-                if os.path.exists(os.path.join(self.sourceDir(), "configure.exe")):
-                    os.remove(os.path.join(self.sourceDir(), "configure.exe"))
+            configure = OsUtils.toUnixPath(os.path.join(self.sourceDir(), "configure.bat"))
+            if self.qtVer < CraftVersion("5.10"):
+                # not needed anymore as we don't patch configure anymore
+                if not os.path.exists(os.path.join(self.sourceDir(), ".gitignore")):  # force bootstrap of configure.exe
+                    with open(os.path.join(self.sourceDir(), ".gitignore"), "wt+") as bootstrap:
+                        bootstrap.write("Force Bootstrap")
+                    if os.path.exists(os.path.join(self.sourceDir(), "configure.exe")):
+                        os.remove(os.path.join(self.sourceDir(), "configure.exe"))
         elif OsUtils.isUnix():
             configure = os.path.join(self.sourceDir(), "configure")
 
@@ -132,12 +139,15 @@ class QtPackage(Qt5CorePackageBase):
             os.path.join(CraftStandardDirs.craftRoot(), "include"), os.path.join(CraftStandardDirs.craftRoot(), "lib"))
             if self.subinfo.options.isActive("win32libs/openssl"):
                 command += " -openssl-linked "
+                if self.qtVer >= CraftVersion("5.10"):
+                    opensslIncDir = os.path.join(CraftCore.standardDirs.craftRoot(), "include", "openssl")
+                    command += f" OPENSSL_LIBS=\"-llibssl -llibcrypto\" OPENSSL_INCDIR=\"{opensslIncDir}\" "
             if self.subinfo.options.isActive("binary/mysql"):
                 command += " -plugin-sql-mysql "
             if self.subinfo.options.isActive("win32libs/dbus"):
                 command += " -qdbus -dbus-runtime -I \"%s\" -I \"%s\" " % (
-                os.path.join(CraftStandardDirs.craftRoot(), "include/dbus-1.0"),
-                os.path.join(CraftStandardDirs.craftRoot(), "lib/dbus-1.0/include"))
+                os.path.join(CraftStandardDirs.craftRoot(), "include", "dbus-1.0"),
+                os.path.join(CraftStandardDirs.craftRoot(), "lib", "dbus-1.0", "include"))
             if self.subinfo.options.isActive("win32libs/icu"):
                 command += " -icu "
             if self.subinfo.options.isActive("win32libs/zlib"):
@@ -153,7 +163,7 @@ class QtPackage(Qt5CorePackageBase):
         if (CraftCore.compiler.isMSVC() and CraftCore.compiler.isClang()) or OsUtils.isUnix() or self.supportsCCACHE:
             command += "-no-pch "
 
-        if CraftCore.compiler.isMinGW():
+        if CraftCore.compiler.isMinGW() and self.qtVer < CraftVersion("5.10"):
             command += """ "QMAKE_CXXFLAGS += -Wa,-mbig-obj" """
 
         return utils.system(command)
@@ -179,14 +189,12 @@ class QtPackage(Qt5CorePackageBase):
             return True
 
     def qmerge(self):
-        if not Qt5CorePackageBase.qmerge(self):
-            return False
-        if OsUtils.isWin():
-            if CraftCore.settings.getboolean("Packager", "UseCache"):
-                patcher = CraftCore.cache.findApplication("qtbinpatcher")
-                binRoot = os.path.join(CraftStandardDirs.craftRoot(), "bin")
-                return utils.system(f"\"{patcher}\" --nobackup --qt-dir=\"{binRoot}\"")
-        return True
+        if OsUtils.isWin() and CraftCore.settings.getboolean("Packager", "UseCache"):
+            if not utils.system(["qtbinpatcher", "--nobackup",
+                                 f"--qt-dir={self.installDir()}",
+                                 f"--new-dir={CraftStandardDirs.craftRoot()}"]):
+                return False
+        return super().qmerge()
 
     def getQtBaseEnv(self):
         envs = {}

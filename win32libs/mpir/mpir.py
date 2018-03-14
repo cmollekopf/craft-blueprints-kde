@@ -18,19 +18,19 @@ class subinfo(info.infoclass):
 
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"
+        self.buildDependencies["dev-util/yasm"] = "default"
         if CraftCore.compiler.isMinGW():
             self.buildDependencies["dev-util/msys"] = "default"
-        else:
-            self.buildDependencies["dev-util/yasm"] = "default"
 
 
 from Package.AutoToolsPackageBase import *
 from Package.MSBuildPackageBase import *
 
 
-class PackageMinGW(AutoToolsPackageBase):
+class PackageAutotools(AutoToolsPackageBase):
     def __init__(self, **args):
         AutoToolsPackageBase.__init__(self)
+        self.subinfo.options.useShadowBuild = False # ./configure doesn't support absolute paths
         abi = "ABI=64"
         if CraftCore.compiler.isX86():
             abi = "ABI=32"
@@ -41,15 +41,7 @@ class PackageMinGW(AutoToolsPackageBase):
 class PackageMSVC(MSBuildPackageBase):
     def __init__(self, **args):
         MSBuildPackageBase.__init__(self)
-        if CraftCore.compiler.getInternalVersion() == 14:
-            self.mpirBuildDir = os.path.join(self.sourceDir(), "build.vc14")
-        else:
-            self.mpirBuildDir = os.path.join(self.sourceDir(), "build.vc15")
-
-        if CraftCore.compiler.isX86():
-            self.subinfo.options.configure.args = " /p:Platform=win32"
-
-        self.subinfo.options.configure.args = self.subinfo.options.configure.args + " /p:WindowsTargetPlatformVersion=" + os.getenv('WINDOWSSDKVERSION')[:-1]
+        self.mpirBuildDir = os.path.join(self.sourceDir(), "build.vc15")
         self.subinfo.options.configure.projectFile = os.path.join(self.mpirBuildDir, "mpir.sln")
         self.msbuildTargets = ["dll_mpir_gc", "lib_mpir_cxx"]
 
@@ -73,6 +65,10 @@ class PackageMSVC(MSBuildPackageBase):
                                             "{"+ ID + "}.Release|Win32.Build.0 = Release|Win32\n")  #3.0.0 version needs those lines, otherwise it won't compile anything
                     projectFileContents.insert(i + 1,
                                             "{"+ ID + "}.Release|x64.Build.0 = Release|x64\n")
+                    projectFileContents.insert(i + 1,
+                                            "{"+ ID + "}.Debug|Win32.Build.0 = Debug|Win32\n")
+                    projectFileContents.insert(i + 1,
+                                            "{"+ ID + "}.Debug|x64.Build.0 = Debug|x64\n")
                 break
 
         f.seek(0)
@@ -94,10 +90,10 @@ class PackageMSVC(MSBuildPackageBase):
         return True
 
 
-if CraftCore.compiler.isMinGW():
-    class Package(PackageMinGW):
+if CraftCore.compiler.isGCCLike():
+    class Package(PackageAutotools):
         def __init__(self):
-            PackageMinGW.__init__(self)
+            PackageAutotools.__init__(self)
 else:
     class Package(PackageMSVC):
         def __init__(self):

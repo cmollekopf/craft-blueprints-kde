@@ -1,10 +1,11 @@
-diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/CMakeLists.txt lmdb-LMDB_0.9.16/libraries/liblmdb/CMakeLists.txt
+diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' '-x*\.o' -x '*\.pyc' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/CMakeLists.txt lmdb-LMDB_0.9.16/libraries/liblmdb/CMakeLists.txt
 --- lmdb-LMDB_0.9.16.orig/libraries/liblmdb/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
-+++ lmdb-LMDB_0.9.16/libraries/liblmdb/CMakeLists.txt	2015-10-04 22:52:27.947936800 +0200
-@@ -0,0 +1,75 @@
++++ lmdb-LMDB_0.9.16/libraries/liblmdb/CMakeLists.txt	2018-03-15 10:56:11.343931516 +0100
+@@ -0,0 +1,76 @@
 +project(liblmdb)
 +
 +cmake_minimum_required(VERSION 2.8)
++
 +# macOS MACOSX_RPATH - @rpath as install name
 +cmake_policy(SET CMP0042 NEW)
 +set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
@@ -77,9 +78,9 @@ diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb
 +        COMMAND "${CMAKE_COMMAND}" -DCMD=${_test} -P ${CMAKE_CURRENT_SOURCE_DIR}/runtests.cmake)
 +    endforeach()
 +endif()
-diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/getopt.c lmdb-LMDB_0.9.16/libraries/liblmdb/getopt.c
+diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' '-x*\.o' -x '*\.pyc' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/getopt.c lmdb-LMDB_0.9.16/libraries/liblmdb/getopt.c
 --- lmdb-LMDB_0.9.16.orig/libraries/liblmdb/getopt.c	1970-01-01 01:00:00.000000000 +0100
-+++ lmdb-LMDB_0.9.16/libraries/liblmdb/getopt.c	2015-10-01 13:40:46.097912200 +0200
++++ lmdb-LMDB_0.9.16/libraries/liblmdb/getopt.c	2018-03-14 15:52:26.036703624 +0100
 @@ -0,0 +1,117 @@
 +/*
 + * getopt.c --
@@ -198,9 +199,9 @@ diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb
 +        }
 +        return (optopt);                        /* dump back option letter */
 +}
-diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/getopt.h lmdb-LMDB_0.9.16/libraries/liblmdb/getopt.h
+diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' '-x*\.o' -x '*\.pyc' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/getopt.h lmdb-LMDB_0.9.16/libraries/liblmdb/getopt.h
 --- lmdb-LMDB_0.9.16.orig/libraries/liblmdb/getopt.h	1970-01-01 01:00:00.000000000 +0100
-+++ lmdb-LMDB_0.9.16/libraries/liblmdb/getopt.h	2015-10-01 14:25:15.400587500 +0200
++++ lmdb-LMDB_0.9.16/libraries/liblmdb/getopt.h	2018-03-14 15:52:26.036703624 +0100
 @@ -0,0 +1,51 @@
 +#ifndef _HAD_GETOPT_H
 +#define _HAD_GETOPT_H
@@ -253,9 +254,9 @@ diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb
 +#endif
 +
 +#endif /* _HAD_GETOPT_H */
-diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/liblmdb.def lmdb-LMDB_0.9.16/libraries/liblmdb/liblmdb.def
+diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' '-x*\.o' -x '*\.pyc' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/liblmdb.def lmdb-LMDB_0.9.16/libraries/liblmdb/liblmdb.def
 --- lmdb-LMDB_0.9.16.orig/libraries/liblmdb/liblmdb.def	1970-01-01 01:00:00.000000000 +0100
-+++ lmdb-LMDB_0.9.16/libraries/liblmdb/liblmdb.def	2015-10-04 22:51:18.518965700 +0200
++++ lmdb-LMDB_0.9.16/libraries/liblmdb/liblmdb.def	2018-03-14 15:52:26.036703624 +0100
 @@ -0,0 +1,71 @@
 +LIBRARY "liblmdb.dll"
 +EXPORTS
@@ -328,9 +329,9 @@ diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb
 +mdb_txn_renew
 +mdb_txn_reset
 +mdb_version
-diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb.c lmdb-LMDB_0.9.16/libraries/liblmdb/mdb.c
+diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' '-x*\.o' -x '*\.pyc' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb.c lmdb-LMDB_0.9.16/libraries/liblmdb/mdb.c
 --- lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb.c	2015-08-14 02:00:38.000000000 +0200
-+++ lmdb-LMDB_0.9.16/libraries/liblmdb/mdb.c	2015-10-01 13:26:24.081607700 +0200
++++ lmdb-LMDB_0.9.16/libraries/liblmdb/mdb.c	2018-03-14 15:52:26.037703605 +0100
 @@ -55,6 +55,7 @@
  # ifndef SSIZE_MAX
  #  define SSIZE_MAX	INT_MAX
@@ -358,9 +359,9 @@ diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb
  #define THREAD_FINISH(thr)	WaitForSingleObject(thr, INFINITE)
  #define LOCK_MUTEX_R(env)	pthread_mutex_lock(&(env)->me_rmutex)
  #define UNLOCK_MUTEX_R(env)	pthread_mutex_unlock(&(env)->me_rmutex)
-diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_copy.c lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_copy.c
+diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' '-x*\.o' -x '*\.pyc' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_copy.c lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_copy.c
 --- lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_copy.c	2015-08-14 02:00:38.000000000 +0200
-+++ lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_copy.c	2015-10-01 14:22:15.830316700 +0200
++++ lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_copy.c	2018-03-14 15:52:26.037703605 +0100
 @@ -20,6 +20,9 @@
  #include <stdio.h>
  #include <stdlib.h>
@@ -371,9 +372,9 @@ diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb
  #include "lmdb.h"
  
  static void
-diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_dump.c lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_dump.c
+diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' '-x*\.o' -x '*\.pyc' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_dump.c lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_dump.c
 --- lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_dump.c	2015-08-14 02:00:38.000000000 +0200
-+++ lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_dump.c	2015-10-01 14:21:15.252851900 +0200
++++ lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_dump.c	2018-03-14 15:52:26.037703605 +0100
 @@ -16,7 +16,11 @@
  #include <stdlib.h>
  #include <string.h>
@@ -386,9 +387,9 @@ diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb
  #include <signal.h>
  #include "lmdb.h"
  
-diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_load.c lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_load.c
+diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' '-x*\.o' -x '*\.pyc' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_load.c lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_load.c
 --- lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_load.c	2015-08-14 02:00:38.000000000 +0200
-+++ lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_load.c	2015-10-01 14:21:29.738680400 +0200
++++ lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_load.c	2018-03-14 15:52:26.037703605 +0100
 @@ -16,7 +16,11 @@
  #include <errno.h>
  #include <string.h>
@@ -401,9 +402,9 @@ diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb
  #include "lmdb.h"
  
  #define PRINT	1
-diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_stat.c lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_stat.c
+diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' '-x*\.o' -x '*\.pyc' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_stat.c lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_stat.c
 --- lmdb-LMDB_0.9.16.orig/libraries/liblmdb/mdb_stat.c	2015-08-14 02:00:38.000000000 +0200
-+++ lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_stat.c	2015-10-01 14:26:22.411420300 +0200
++++ lmdb-LMDB_0.9.16/libraries/liblmdb/mdb_stat.c	2018-03-14 15:52:26.037703605 +0100
 @@ -14,7 +14,13 @@
  #include <stdio.h>
  #include <stdlib.h>
@@ -418,9 +419,9 @@ diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb
  #include "lmdb.h"
  
  #ifdef	_WIN32
-diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/runtests.cmake lmdb-LMDB_0.9.16/libraries/liblmdb/runtests.cmake
+diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' '-x*\.o' -x '*\.pyc' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/runtests.cmake lmdb-LMDB_0.9.16/libraries/liblmdb/runtests.cmake
 --- lmdb-LMDB_0.9.16.orig/libraries/liblmdb/runtests.cmake	1970-01-01 01:00:00.000000000 +0100
-+++ lmdb-LMDB_0.9.16/libraries/liblmdb/runtests.cmake	2015-10-01 22:14:08.183607200 +0200
++++ lmdb-LMDB_0.9.16/libraries/liblmdb/runtests.cmake	2018-03-14 15:52:26.038703586 +0100
 @@ -0,0 +1,11 @@
 +# test script for cmake
 +execute_process(COMMAND ${CMAKE_COMMAND} -E remove_directory testdb)

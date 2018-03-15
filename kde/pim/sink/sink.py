@@ -6,6 +6,9 @@ class subinfo(info.infoclass):
         self.defaultTarget = 'develop'
         self.description = "Sink"
 
+
+
+
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"
         self.buildDependencies["frameworks/extra-cmake-modules"] = "default"

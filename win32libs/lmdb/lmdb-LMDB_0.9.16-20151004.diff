@@ -1,10 +1,13 @@
 diff -Nrub -x '*~' -x '*\.orig' -x'*\.o' lmdb-LMDB_0.9.16.orig/libraries/liblmdb/CMakeLists.txt lmdb-LMDB_0.9.16/libraries/liblmdb/CMakeLists.txt
 --- lmdb-LMDB_0.9.16.orig/libraries/liblmdb/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 +++ lmdb-LMDB_0.9.16/libraries/liblmdb/CMakeLists.txt	2015-10-04 22:52:27.947936800 +0200
-@@ -0,0 +1,72 @@
+@@ -0,0 +1,75 @@
 +project(liblmdb)
 +
 +cmake_minimum_required(VERSION 2.8)
++# macOS MACOSX_RPATH - @rpath as install name
++cmake_policy(SET CMP0042 NEW)
++set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 +
 +option(BUILD_TESTS "build unittests" ON)
 +option(BUILD_TOOLS "build mdb tools" ON)

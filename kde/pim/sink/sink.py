@@ -5,9 +5,7 @@ class subinfo(info.infoclass):
         self.svnTargets['develop'] = "git://anongit.kde.org/sink|develop"
         self.defaultTarget = 'develop'
         self.description = "Sink"
-
-
-
+        self.patchToApply['develop'] = [('sink-20180315.patch', 3)]
 
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"

@@ -20,8 +20,8 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["libs/qt5/qtwebengine"] = "default"
         self.buildDependencies["frameworks/tier1/kcoreaddons"] = "default"
         self.buildDependencies["kde/pim/kmime"] = "default"
-        self.buildDependencies["kde/pim/sink"] = "default"
-        self.buildDependencies["kde/pim/kasync"] = "default"
+        self.buildDependencies["extragear/sink"] = "default"
+        self.buildDependencies["extragear/kasync"] = "default"
         if CraftCore.compiler.isGCCLike():
             self.runtimeDependencies["autotools/gpgme-src"] = "default"
         else:

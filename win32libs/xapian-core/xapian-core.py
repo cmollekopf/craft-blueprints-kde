@@ -9,6 +9,7 @@ class subinfo(info.infoclass):
         self.targetInstSrc['1.4.5'] = 'xapian-core-1.4.5'
         self.description = "Open Source Search Engine library"
         #self.patchToApply['1.4.5'] = [("xapian-core-1.2.24-20170626.diff", 1)]
+        self.patchToApply['1.4.5'] = [("xapian-core-1.4.5-20180320.diff", 1)]
         self.defaultTarget = '1.4.5'
 
     def setDependencies(self):

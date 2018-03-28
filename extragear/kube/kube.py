@@ -20,6 +20,7 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["libs/qt5/qtwebengine"] = "default"
         self.buildDependencies["frameworks/tier1/kcoreaddons"] = "default"
         self.buildDependencies["kde/pim/kmime"] = "default"
+        self.buildDependencies["kde/pim/kcalcore"] = "default"
         self.buildDependencies["extragear/sink"] = "default"
         self.buildDependencies["extragear/kasync"] = "default"
         if CraftCore.compiler.isGCCLike():

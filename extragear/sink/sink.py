@@ -16,6 +16,7 @@ class subinfo(info.infoclass):
         self.buildDependencies["extragear/kdav2"] = "default"
         self.buildDependencies["extragear/kasync"] = "default"
         self.buildDependencies["kde/pim/kcontacts"] = "default"
+        self.buildDependencies["kde/pim/kcalcore"] = "default"
         self.buildDependencies["kdesupport/flatbuffers"] = "default"
         self.buildDependencies["win32libs/lmdb"] = "default"
         self.buildDependencies["win32libs/xapian-core"] = "default"

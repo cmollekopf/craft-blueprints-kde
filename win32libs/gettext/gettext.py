@@ -66,11 +66,11 @@ class PackageMSVC(MSBuildPackageBase):
                 utils.copyFile(os.path.join(self.sourceDir(), "gettext-runtime", "libasprintf", "msvc", "autosprintf.h"),
                                os.path.join(self.installDir(), "include", "autosprintf.h")))
 
-if CraftCore.compiler.isGCCLike():
-    class Package(PackageMinGW):
-        def __init__(self):
-            PackageMinGW.__init__(self)
-else:
+if CraftCore.compiler.isMSVC():
     class Package(PackageMSVC):
         def __init__(self):
             PackageMSVC.__init__(self)
+else:
+    class Package(PackageMinGW):
+        def __init__(self):
+            PackageMinGW.__init__(self)

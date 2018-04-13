@@ -1,0 +1,42 @@
+diff -Nrub -x '*~' -x '*.rej' -x kcoreaddons-5.44.0.orig '-x*.o' -x '*.pyc' kcoreaddons-5.44.0.orig/src/lib/plugin/desktopfileparser.cpp kcoreaddons-5.44.0/src/lib/plugin/desktopfileparser.cpp
+--- kcoreaddons-5.44.0.orig/src/lib/plugin/desktopfileparser.cpp	2018-03-06 00:12:31.000000000 -0800
++++ kcoreaddons-5.44.0/src/lib/plugin/desktopfileparser.cpp	2018-04-13 09:25:11.994853600 -0700
+@@ -180,6 +180,7 @@
+             // This was checked when parsing the file, no other QVariant::Type values are possible
+             Q_UNREACHABLE();
+         }
++	return {};
+     }
+     QByteArray key;
+     QVariant::Type type;
+diff -Nrub -x '*~' -x '*.rej' -x kcoreaddons-5.44.0.orig '-x*.o' -x '*.pyc' kcoreaddons-5.44.0.orig/src/lib/plugin/kexportplugin.h kcoreaddons-5.44.0/src/lib/plugin/kexportplugin.h
+--- kcoreaddons-5.44.0.orig/src/lib/plugin/kexportplugin.h	2018-03-06 00:12:31.000000000 -0800
++++ kcoreaddons-5.44.0/src/lib/plugin/kexportplugin.h	2018-04-13 09:28:07.286812300 -0700
+@@ -42,15 +42,6 @@
+ #else
+ #define Q_STANDARD_CALL
+ 
+-#ifndef KCOREADDONS_NO_DEPRECATED
+-class KCOREADDONS_DEPRECATED_EXPORT K_EXPORT_PLUGIN_is_deprecated_see_KDE5PORTING
+-{
+-};
+-
+-#define K_EXPORT_PLUGIN(factory) \
+-    K_EXPORT_PLUGIN_is_deprecated_see_KDE5PORTING dummy;
+-#endif
+-
+ #endif
+ 
+ #endif // KEXPORTPLUGIN_H
+Binary files kcoreaddons-5.44.0.orig/src/lib/util/.kformatprivate.cpp.swp and kcoreaddons-5.44.0/src/lib/util/.kformatprivate.cpp.swp differ
+diff -Nrub -x '*~' -x '*.rej' -x kcoreaddons-5.44.0.orig '-x*.o' -x '*.pyc' kcoreaddons-5.44.0.orig/src/lib/util/kformatprivate.cpp kcoreaddons-5.44.0/src/lib/util/kformatprivate.cpp
+--- kcoreaddons-5.44.0.orig/src/lib/util/kformatprivate.cpp	2018-03-06 00:12:31.000000000 -0800
++++ kcoreaddons-5.44.0/src/lib/util/kformatprivate.cpp	2018-04-13 09:30:37.131066400 -0700
+@@ -422,6 +422,7 @@
+         }
+     }
+     Q_UNREACHABLE();
++    return {};
+ }
+ 
+ QString KFormatPrivate::formatRelativeDateTime(const QDateTime &dateTime, QLocale::FormatType format) const

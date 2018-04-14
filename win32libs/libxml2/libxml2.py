@@ -7,7 +7,7 @@ class subinfo(info.infoclass):
         for ver in ['2.9.7']:
             self.targets[ver] = 'ftp://xmlsoft.org/libxml2/libxml2-' + ver + '.tar.gz'
             self.targetInstSrc[ver] = 'libxml2-' + ver
-            if not CraftCore.compiler.isGCCLike():
+            if CraftCore.compiler.isMSVC():
                 self.targetInstSrc[ver] = os.path.join(self.targetInstSrc[ver], 'win32')
         self.targetDigests['2.9.7'] = (['f63c5e7d30362ed28b38bfa1ac6313f9a80230720b7fb6c80575eeab3ff5900c'], CraftHash.HashAlgorithm.SHA256)
         self.description = "XML C parser and toolkit (runtime and applications)"

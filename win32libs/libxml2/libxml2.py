@@ -58,11 +58,11 @@ class PackageMinGW(AutoToolsPackageBase):
         AutoToolsPackageBase.__init__(self)
         self.subinfo.options.configure.args += " --disable-static --enable-shared --without-python "
 
-if CraftCore.compiler.isGCCLike():
-    class Package(PackageMinGW):
-        def __init__(self):
-            PackageMinGW.__init__(self)
-else:
+if CraftCore.compiler.isMSVC():
     class Package(PackageMSVC):
         def __init__(self):
             PackageMSVC.__init__(self)
+else:
+    class Package(PackageMinGW):
+        def __init__(self):
+            PackageMinGW.__init__(self)

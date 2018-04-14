@@ -7,10 +7,10 @@ class subinfo(info.infoclass):
 
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"
-        if CraftCore.compiler.isGCCLike():
-            self.runtimeDependencies["autotools/gpg-error-src"] = "default"
-        else:
+        if CraftCore.compiler.isMSVC():
             self.runtimeDependencies["win32libs/mingw-crt4msvc"] = "default"
+        else:
+            self.runtimeDependencies["autotools/gpg-error-src"] = "default"
 
 
 from Package.BinaryPackageBase import *

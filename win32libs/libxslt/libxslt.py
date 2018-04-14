@@ -7,7 +7,7 @@ class subinfo(info.infoclass):
         for ver in ['1.1.32']:
             self.targets[ver] = 'ftp://xmlsoft.org/libxslt/libxslt-' + ver + '.tar.gz'
             self.targetInstSrc[ver] = 'libxslt-' + ver
-            if not CraftCore.compiler.isGCCLike():
+            if CraftCore.compiler.isMSVC():
                 self.targetInstSrc[ver] = os.path.join(self.targetInstSrc[ver], 'win32')
         self.targetDigests['1.1.32'] = (['526ecd0abaf4a7789041622c3950c0e7f2c4c8835471515fd77eec684a355460'], CraftHash.HashAlgorithm.SHA256)
 
@@ -50,11 +50,11 @@ class PackageMinGW(AutoToolsPackageBase):
         AutoToolsPackageBase.__init__(self)
         self.subinfo.options.configure.args += " --disable-static --enable-shared "
         
-if CraftCore.compiler.isGCCLike():
-    class Package(PackageMinGW):
-        def __init__(self):
-            PackageMinGW.__init__(self)
-else:
+if CraftCore.compiler.isMSVC():
     class Package(PackageMSVC):
         def __init__(self):
             PackageMSVC.__init__(self)
+else:
+    class Package(PackageMinGW):
+        def __init__(self):
+            PackageMinGW.__init__(self)

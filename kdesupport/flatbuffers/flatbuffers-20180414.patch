@@ -1,0 +1,33 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a3388dd..d6deeed 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -136,7 +136,7 @@ elseif(CMAKE_COMPILER_IS_GNUCXX)
+ 
+ elseif(${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
+   set(CMAKE_CXX_FLAGS
+-      "${CMAKE_CXX_FLAGS} -std=c++0x -Wall -pedantic -Werror -Wextra -Wno-unused-parameter")
++      "${CMAKE_CXX_FLAGS} -std=c++0x  -Wno-unused-parameter")
+   if(NOT "${CMAKE_SYSTEM_NAME}" MATCHES "Linux")
+     set(CMAKE_CXX_FLAGS
+         "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+@@ -292,7 +292,7 @@ if(FLATBUFFERS_INSTALL)
+     install(
+       TARGETS flatc EXPORT FlatcTargets
+       RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+-      CONFIGURATIONS Release
++      CONFIGURATIONS Release RelWithDebInfo
+     )
+ 
+     install(
+@@ -300,7 +300,7 @@ if(FLATBUFFERS_INSTALL)
+       FILE FlatcTargets.cmake
+       NAMESPACE flatbuffers::
+       DESTINATION ${FB_CMAKE_DIR}
+-      CONFIGURATIONS Release
++      CONFIGURATIONS Release RelWithDebInfo
+     )
+   endif()
+ 
+warning: CRLF will be replaced by LF in CMakeLists.txt.
+The file will have its original line endings in your working directory.

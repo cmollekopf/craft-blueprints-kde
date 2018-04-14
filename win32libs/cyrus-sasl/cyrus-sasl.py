@@ -7,7 +7,7 @@ from Package.CMakePackageBase import *
 class subinfo(info.infoclass):
     def setTargets(self):
         for ver in ['2.1.26']:
-            self.targets[ver] = 'ftp://ftp.cyrusimap.org/cyrus-sasl/cyrus-sasl-' + ver + '.tar.gz'
+            self.targets[ver] = 'https://www.cyrusimap.org/releases/cyrus-sasl-' + ver + '.tar.gz'
             self.targetInstSrc[ver] = 'cyrus-sasl-' + ver
         self.patchToApply['2.1.26'] = [('cyrus-sasl-2.1.26.patch', 1)]
         self.targetDigests['2.1.26'] = 'd6669fb91434192529bd13ee95737a8a5040241c'

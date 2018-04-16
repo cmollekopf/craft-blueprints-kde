@@ -2,7 +2,7 @@ import info
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.svnTargets['1.4.5'] = 'https://github.com/xapian/xapian.git|Release/1.4'
+        self.svnTargets['1.4.5'] = 'https://github.com/xapian/xapian.git|RELEASE/1.4'
         self.description = "Open Source Search Engine library"
         self.patchToApply['1.4.5'] = [("xapian-core-1.4.5-20180320.diff", 1)]
         self.defaultTarget = '1.4.5'

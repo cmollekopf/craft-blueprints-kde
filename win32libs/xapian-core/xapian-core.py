@@ -23,7 +23,7 @@ class Package(AutoToolsPackageBase):
     def __init__(self, **args):
         AutoToolsPackageBase.__init__(self)
         if OsDetection.isWin():
-            self.subinfo.options.configure.args += " LD='ld' --disable-backend-remote"
+            self.subinfo.options.configure.args += " LD='ld' LIBS='C:\\Users\\User\\CraftRoot\\lib\\zlib.lib' --disable-backend-remote"
         #print("INSTALL ARGS: " + self.subinfo.options.install.args)
         #self.subinfo.options.install.args += " install "
 

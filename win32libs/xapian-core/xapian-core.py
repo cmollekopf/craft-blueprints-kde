@@ -2,7 +2,7 @@ import info
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.targets['1.4'] = 'https://github.com/xapian/xapian/archive/RELEASE/1.4.tar.xz'
+        self.targets['1.4'] = 'https://github.com/xapian/xapian/archive/RELEASE/1.4.tar.gz'
         self.targetInstSrc['1.4'] = 'xapian-core-1.4'
         #self.svnTargets['1.4'] = 'https://github.com/xapian/xapian.git|RELEASE/1.4'
         self.description = "Open Source Search Engine library"

@@ -15,10 +15,75 @@ diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapia
  docsource.mk: preautoreconf
  	cd $(top_srcdir) && ./preautoreconf
  
+diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapian-core-1.4.5.orig/common/fileutils.cc xapian-core-1.4.5/common/fileutils.cc
+--- xapian-core-1.4.5.orig/common/fileutils.cc	2017-10-15 19:32:24.000000000 -0700
++++ xapian-core-1.4.5/common/fileutils.cc	2018-04-16 04:23:18.316566300 -0700
+@@ -75,7 +75,7 @@
+ 	    }
+ 	}
+     }
+-    if (rmdir(dirname.c_str())) {
++    if (_rmdir(dirname.c_str())) {
+ 	throw Xapian::DatabaseError("Cannot remove directory '" + dirname + "'", errno);
+     }
+ }
+diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapian-core-1.4.5.orig/common/io_utils.h xapian-core-1.4.5/common/io_utils.h
+--- xapian-core-1.4.5.orig/common/io_utils.h	2017-10-15 19:32:24.000000000 -0700
++++ xapian-core-1.4.5/common/io_utils.h	2018-04-16 02:53:13.613614500 -0700
+@@ -23,6 +23,7 @@
+ #define XAPIAN_INCLUDED_IO_UTILS_H
+ 
+ #include <sys/types.h>
++#include "config.h"
+ #include "safefcntl.h"
+ #include "safeunistd.h"
+ #include <string>
+diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapian-core-1.4.5.orig/common/safeunistd.h xapian-core-1.4.5/common/safeunistd.h
+--- xapian-core-1.4.5.orig/common/safeunistd.h	2017-10-15 19:32:24.000000000 -0700
++++ xapian-core-1.4.5/common/safeunistd.h	2018-04-16 05:50:18.665678600 -0700
+@@ -34,6 +34,7 @@
+ // We also need to do some renaming of functions to get versions which
+ // work on large files.
+ # include <io.h>
++# include <direct.h>
+ 
+ # ifdef lseek
+ #  undef lseek
+diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapian-core-1.4.5.orig/config.h.in xapian-core-1.4.5/config.h.in
+--- xapian-core-1.4.5.orig/config.h.in	2017-10-15 19:32:44.000000000 -0700
++++ xapian-core-1.4.5/config.h.in	2018-04-16 06:57:32.065551100 -0700
+@@ -370,6 +370,7 @@
+ /* Disable stupid MSVC "performance" warning for converting int to bool. */
+ #ifdef _MSC_VER
+ # pragma warning(disable:4800)
++# pragma warning(disable:4003)
+ #endif
+ 
+ /* _FORTIFY_SOURCE is only supported by GCC >= 4.1 and glibc >= 2.3.4, but it
+@@ -415,3 +416,6 @@
+ # define __MATHERR_RENAME_EXCEPTION
+ #endif
+ 
++#if !defined __WIN32__ && defined _WIN32 
++# define __WIN32__
++#endif
 diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapian-core-1.4.5.orig/configure.ac xapian-core-1.4.5/configure.ac
 --- xapian-core-1.4.5.orig/configure.ac	2017-10-15 19:32:24.000000000 -0700
-+++ xapian-core-1.4.5/configure.ac	2018-04-16 02:37:54.680723800 -0700
-@@ -1327,6 +1327,10 @@
++++ xapian-core-1.4.5/configure.ac	2018-04-16 06:52:53.721831400 -0700
+@@ -1283,8 +1283,12 @@
+ [/* Disable stupid MSVC "performance" warning for converting int to bool. */
+ #ifdef _MSC_VER
+ # pragma warning(disable:4800)
++# pragma warning(disable:4003)
++# define NOMINMAX
++# define _USE_MATH_DEFINES
+ #endif
+ 
++
+ /* _FORTIFY_SOURCE is only supported by GCC >= 4.1 and glibc >= 2.3.4, but it
+  * shouldn't cause a problem to define it where it's not supported and some
+  * distros may have backported support, so hardcoding version checks is
+@@ -1327,6 +1331,10 @@
  #ifdef __SUNPRO_CC
  # define __MATHERR_RENAME_EXCEPTION
  #endif
@@ -40,4 +105,27 @@ diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapia
 +#  define XAPIAN_NOTHROW(D)  D XAPIAN_NOEXCEPT
  # endif
  #endif
+ 
+Binary files xapian-core-1.4.5.orig/weight/.pl2weight.cc.swp and xapian-core-1.4.5/weight/.pl2weight.cc.swp differ
+diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapian-core-1.4.5.orig/weight/pl2plusweight.cc xapian-core-1.4.5/weight/pl2plusweight.cc
+--- xapian-core-1.4.5.orig/weight/pl2plusweight.cc	2017-10-15 19:32:24.000000000 -0700
++++ xapian-core-1.4.5/weight/pl2plusweight.cc	2018-04-16 06:59:55.195794400 -0700
+@@ -28,6 +28,7 @@
+ #include "serialise-double.h"
+ 
+ #include "xapian/error.h"
++#include <algorithm>
+ 
+ using namespace std;
+ 
+diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapian-core-1.4.5.orig/weight/pl2weight.cc xapian-core-1.4.5/weight/pl2weight.cc
+--- xapian-core-1.4.5.orig/weight/pl2weight.cc	2017-10-15 19:32:24.000000000 -0700
++++ xapian-core-1.4.5/weight/pl2weight.cc	2018-04-16 07:06:01.801969700 -0700
+@@ -27,6 +27,7 @@
+ #include "serialise-double.h"
+ 
+ #include "xapian/error.h"
++#include <algorithm>
+ 
+ using namespace std;
  

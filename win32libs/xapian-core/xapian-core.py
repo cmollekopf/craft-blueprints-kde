@@ -14,8 +14,9 @@ class subinfo(info.infoclass):
     def setDependencies(self):
         self.runtimeDependencies["win32libs/libxslt"] = "default"
         self.runtimeDependencies["virtual/base"] = "default"
-        self.buildDependencies["dev-util/msys"] = "default"
-        self.runtimeDependencies["win32libs/zlib"] = "default"
+        if OsDetection.isWin():
+            self.runtimeDependencies["win32libs/zlib"] = "default"
+            self.buildDependencies["dev-util/msys"] = "default"
 
 
 #class Package(CMakePackageBase):

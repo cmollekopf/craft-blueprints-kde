@@ -19,7 +19,10 @@ class subinfo(info.infoclass):
         self.buildDependencies["frameworks/extra-cmake-modules"] = "default"
         self.runtimeDependencies["libs/qt5/qtbase"] = "default"
         self.runtimeDependencies["win32libs/libical"] = "default"
-        self.runtimeDependencies["autotools/bison"] = "default"
+        if OsDetection.isWin():
+            self.runtimeDependencies["dev-util/winflexbison"] = "default"
+        else:
+            self.runtimeDependencies["autotools/bison"] = "default"
 
 
 from Package.CMakePackageBase import *

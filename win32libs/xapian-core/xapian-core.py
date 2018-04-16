@@ -2,12 +2,11 @@ import info
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.targets['1.4'] = 'https://github.com/xapian/xapian/archive/RELEASE/1.4.tar.gz'
-        self.targetInstSrc['1.4'] = 'xapian-core-1.4'
-        #self.svnTargets['1.4'] = 'https://github.com/xapian/xapian.git|RELEASE/1.4'
+        self.targets['1.4.5'] = 'http://oligarchy.co.uk/xapian/1.4.5/xapian-core-1.4.5.tar.xz'
+        self.targetInstSrc['1.4.5'] = 'xapian-core-1.4.5'
         self.description = "Open Source Search Engine library"
-        self.patchToApply['1.4'] = [("xapian-core-1.4.5-20180320.diff", 1)]
-        self.defaultTarget = '1.4'
+        self.patchToApply['1.4.5'] = [("xapian-core-1.4.5-20180320.diff", 1)]
+        self.defaultTarget = '1.4.5'
 
     def setDependencies(self):
         self.runtimeDependencies["win32libs/libxslt"] = "default"

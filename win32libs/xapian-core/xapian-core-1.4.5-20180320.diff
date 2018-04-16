@@ -1,6 +1,6 @@
-diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' -x'*\.o' -x '*\.pyc' xapian-core-1.4.5.orig/Makefile.in xapian-core-1.4.5/Makefile.in
+diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapian-core-1.4.5.orig/Makefile.in xapian-core-1.4.5/Makefile.in
 --- xapian-core-1.4.5.orig/Makefile.in	2017-10-15 19:32:45.000000000 -0700
-+++ xapian-core-1.4.5/Makefile.in	2018-03-20 01:27:25.000000000 -0700
++++ xapian-core-1.4.5/Makefile.in	2018-04-16 02:32:19.766942800 -0700
 @@ -3733,11 +3733,11 @@
  install-exec-local: xapian-config
  	$(MKDIR_P) "$(DESTDIR)$(bindir)"
@@ -14,4 +14,30 @@ diff -Nrub -x '*~' -x '*\.rej' -x '*\.orig' -x'*\.o' -x '*\.pyc' xapian-core-1.4
 +	rm -f "$(DESTDIR)$(bindir)/xapian-config"
  docsource.mk: preautoreconf
  	cd $(top_srcdir) && ./preautoreconf
+ 
+diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapian-core-1.4.5.orig/configure.ac xapian-core-1.4.5/configure.ac
+--- xapian-core-1.4.5.orig/configure.ac	2017-10-15 19:32:24.000000000 -0700
++++ xapian-core-1.4.5/configure.ac	2018-04-16 02:37:54.680723800 -0700
+@@ -1327,6 +1327,10 @@
+ #ifdef __SUNPRO_CC
+ # define __MATHERR_RENAME_EXCEPTION
+ #endif
++
++#if !defined __WIN32__ && defined _WIN32 
++# define __WIN32__
++#endif
+ ])
+ 
+ AC_SUBST([AM_CXXFLAGS])
+diff -Nrub -x '*~' -x '*.rej' -x xapian-core-1.4.5.orig '-x*.o' -x '*.pyc' xapian-core-1.4.5.orig/include/xapian/attributes.h xapian-core-1.4.5/include/xapian/attributes.h
+--- xapian-core-1.4.5.orig/include/xapian/attributes.h	2017-10-15 19:32:24.000000000 -0700
++++ xapian-core-1.4.5/include/xapian/attributes.h	2018-04-16 02:36:30.053112500 -0700
+@@ -64,7 +64,7 @@
+ # define XAPIAN_PURE_FUNCTION
+ 
+ # ifdef _MSC_VER
+-#  define XAPIAN_NOTHROW(D) __declspec(nothrow) D XAPIAN_NOEXCEPT
++#  define XAPIAN_NOTHROW(D)  D XAPIAN_NOEXCEPT
+ # endif
+ #endif
  

@@ -22,9 +22,10 @@ class Package(AutoToolsPackageBase):
     def __init__(self, **args):
         AutoToolsPackageBase.__init__(self)
         if OsDetection.isWin():
-            self.subinfo.options.configure.args += " LD='ld' LIBS='C:\\Users\\User\\CraftRoot\\lib\\zlib.lib' --disable-backend-remote"
-        #print("INSTALL ARGS: " + self.subinfo.options.install.args)
-        #self.subinfo.options.install.args += " install "
+            self.subinfo.options.configure.args += " LD='lld-link.exe' OBJDUMP='llvm-objdump.exe' LIBS='C:\\Users\\User\\CraftRoot\\lib\\zlib.lib' --disable-backend-remote"
+        #We typically run into LNK1160 (commandline args too long because the .exp files in .libs/ are too large.
+        #By supplying -fuse-ld=ldd-link.exe we can use another linker which doesn't run into that problem, but then we end up with error: entry point must be defined.
+        # Fuck. This. Shit.
 
     def install(self):
         #print("INSTALL ARGS during install: " + self.subinfo.options.install.args)

@@ -1,5 +1,6 @@
 import info
-
+from Package.CMakePackageBase import *
+from CraftOS.osutils import OsUtils
 
 class subinfo(info.infoclass):
     def setTargets(self):
@@ -19,13 +20,10 @@ class subinfo(info.infoclass):
         self.buildDependencies["frameworks/extra-cmake-modules"] = "default"
         self.runtimeDependencies["libs/qt5/qtbase"] = "default"
         self.runtimeDependencies["win32libs/libical"] = "default"
-        if OsDetection.isWin():
+        if OsUtils.isWin():
             self.runtimeDependencies["dev-util/winflexbison"] = "default"
         else:
             self.runtimeDependencies["autotools/bison"] = "default"
-
-
-from Package.CMakePackageBase import *
 
 
 class Package(CMakePackageBase):

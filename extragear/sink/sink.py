@@ -21,6 +21,7 @@ class subinfo(info.infoclass):
         self.buildDependencies["win32libs/lmdb"] = "default"
         self.buildDependencies["win32libs/xapian-core"] = "default"
         self.buildDependencies["win32libs/libcurl"] = "default"
+        self.buildDependencies["gnuwin32/readline"] = "default"
 
 
 from Package.CMakePackageBase import *

@@ -20,6 +20,7 @@ class subinfo(info.infoclass):
         self.buildDependencies["kdesupport/flatbuffers"] = "default"
         self.buildDependencies["win32libs/lmdb"] = "default"
         self.buildDependencies["win32libs/xapian-core"] = "default"
+        self.buildDependencies["win32libs/curl"] = "default"
 
 
 from Package.CMakePackageBase import *

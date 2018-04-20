@@ -1,4 +1,5 @@
 import info
+from CraftOS.osutils import OsUtils
 
 class subinfo(info.infoclass):
     def setTargets(self):
@@ -23,7 +24,7 @@ class subinfo(info.infoclass):
         self.buildDependencies["kde/pim/kcalcore"] = "default"
         self.buildDependencies["extragear/sink"] = "default"
         self.buildDependencies["extragear/kasync"] = "default"
-        if CraftCore.compiler.isMSVC():
+        if OsUtils.isWin():
             self.runtimeDependencies["win32libs/gpgme"] = "default"
         else:
             self.runtimeDependencies["autotools/gpgme-src"] = "default"

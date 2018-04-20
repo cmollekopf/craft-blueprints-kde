@@ -27,7 +27,8 @@ class subinfo(info.infoclass):
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"
         self.runtimeDependencies["win32libs/zlib"] = "default"
-        self.runtimeDependencies["win32libs/openssl"] = "default"
+        #Install using an installer. https://slproweb.com/download/Win64OpenSSL-1_1_0h.exe
+        #self.runtimeDependencies["win32libs/openssl"] = "default"
 
 
 class Package(CMakePackageBase):

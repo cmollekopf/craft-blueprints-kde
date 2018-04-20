@@ -7,12 +7,12 @@ class subinfo(info.infoclass):
 
     def setDependencies(self):
         self.runtimeDependencies['virtual/base'] = 'default'
-        if CraftCore.compiler.isGCCLike():
-            self.runtimeDependencies["autotools/gpgme-src"] = "default"
-        else:
+        if OsUtils.isWin():
             self.runtimeDependencies["win32libs/mingw-crt4msvc"] = "default"
             self.runtimeDependencies['win32libs/assuan2'] = 'default'
             self.runtimeDependencies["win32libs/gpg-error"] = "default"
+        else:
+            self.runtimeDependencies["autotools/gpgme-src"] = "default"
 
 
 from Package.BinaryPackageBase import *

@@ -7,7 +7,7 @@ class subinfo(info.infoclass):
 
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"
-        if CraftCore.compiler.isMSVC():
+        if OsUtils.isWin():
             self.runtimeDependencies["win32libs/mingw-crt4msvc"] = "default"
         else:
             self.runtimeDependencies["autotools/gpg-error-src"] = "default"

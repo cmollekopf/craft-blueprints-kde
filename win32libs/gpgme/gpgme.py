@@ -26,4 +26,4 @@ class BinPackage(BinaryPackageBase):
 
 class Package(MaybeVirtualPackageBase):
     def __init__(self):
-        MaybeVirtualPackageBase.__init__(self, not CraftCore.compiler.isGCCLike(), classA=BinPackage)
+        MaybeVirtualPackageBase.__init__(self, CraftCore.compiler.isMSVC(), classA=BinPackage)

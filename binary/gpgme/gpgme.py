@@ -15,6 +15,7 @@ class subinfo(info.infoclass):
 
     def setDependencies(self):
         self.runtimeDependencies["virtual/bin-base"] = "default"
+        self.buildDependencies["win32libs/pthreads"] = "default"
 
 
 class PackageBin(BinaryPackageBase):

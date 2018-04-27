@@ -1,0 +1,99 @@
+diff -Nrub "build\\binary\\gpgme\\work\\lib.orig/cmake/Gpgmepp/GpgmeppConfig.cmake" "build\\binary\\gpgme\\work\\lib/cmake/Gpgmepp/GpgmeppConfig.cmake"
+--- "build\\binary\\gpgme\\work\\lib.orig/cmake/Gpgmepp/GpgmeppConfig.cmake"	2018-04-26 14:06:59.000000000 -0700
++++ "build\\binary\\gpgme\\work\\lib/cmake/Gpgmepp/GpgmeppConfig.cmake"	2018-04-27 05:17:06.512348800 -0700
+@@ -52,7 +52,7 @@
+   return()
+ endif()
+ if(NOT "${_targetsDefined}" STREQUAL "")
+-  message(FATAL_ERROR "Some (but not all) targets in this export set were already defined.\nTargets Defined: ${_targetsDefined}\nTargets not yet defined: ${_targetsNotDefined}\n")
++  message(FATAL_ERROR "Some (but not all) targets in this export set were already defined./nTargets Defined: ${_targetsDefined}/nTargets not yet defined: ${_targetsNotDefined}/n")
+ endif()
+ unset(_targetsDefined)
+ unset(_targetsNotDefined)
+@@ -62,37 +62,16 @@
+ add_library(Gpgmepp SHARED IMPORTED)
+ 
+ set_target_properties(Gpgmepp PROPERTIES
+-  IMPORTED_IMPLIB "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libgpgmepp.dll.a"
+-  INTERFACE_INCLUDE_DIRECTORIES "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/include/gpgme++;/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/include"
+-  INTERFACE_LINK_LIBRARIES "pthread;/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libgpgme.dll.a;-L/build/gpg4win/src/playground/install/pkgs/libassuan-2.5.1/lib -lassuan -lws2_32 -L/build/gpg4win/src/playground/install/pkgs/libgpg-error-1.27/lib -lgpg-error"
+-  IMPORTED_LOCATION "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/bin/libgpgmepp-6.dll"
++  IMPORTED_IMPLIB "C:/Users/User/CraftRoot/lib/libgpgmepp.dll.a"
++  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/User/CraftRoot/include/gpgme++;C:/Users/User/CraftRoot/include"
++  INTERFACE_LINK_LIBRARIES "pthread;C:/Users/User/CraftRoot/lib/libgpgme.dll.a;-lassuan -lws2_32 -LC:/Users/User/CraftRoot/lib/ -lgpg-error"
++  IMPORTED_LOCATION "C:/Users/User/CraftRoot/bin/libgpgmepp-6.dll"
+ )
+-list(APPEND _IMPORT_CHECK_TARGETS Gpgmepp )
+-list(APPEND _IMPORT_CHECK_FILES_FOR_Gpgmepp "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libgpgmepp.dll.a" "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/bin/libgpgmepp-6.dll" )
+-
+ 
+ if(CMAKE_VERSION VERSION_LESS 2.8.12)
+   message(FATAL_ERROR "This file relies on consumers using CMake 2.8.12 or greater.")
+ endif()
+ 
+-# Loop over all imported files and verify that they actually exist
+-foreach(target ${_IMPORT_CHECK_TARGETS} )
+-  foreach(file ${_IMPORT_CHECK_FILES_FOR_${target}} )
+-    if(NOT EXISTS "${file}" )
+-      message(FATAL_ERROR "The imported target \"${target}\" references the file
+-   \"${file}\"
+-but this file does not exist.  Possible reasons include:
+-* The file was deleted, renamed, or moved to another location.
+-* An install or uninstall procedure did not complete successfully.
+-* The installation package was faulty and contained
+-   \"${CMAKE_CURRENT_LIST_FILE}\"
+-but not all the files it references.
+-")
+-    endif()
+-  endforeach()
+-  unset(_IMPORT_CHECK_FILES_FOR_${target})
+-endforeach()
+-unset(_IMPORT_CHECK_TARGETS)
+ 
+ # Commands beyond this point should not need to know the version.
+ set(CMAKE_IMPORT_FILE_VERSION)
+diff -Nrub "build\\binary\\gpgme\\work\\lib.orig/cmake/QGpgme/QGpgmeConfig.cmake" "build\\binary\\gpgme\\work\\lib/cmake/QGpgme/QGpgmeConfig.cmake"
+--- "build\\binary\\gpgme\\work\\lib.orig/cmake/QGpgme/QGpgmeConfig.cmake"	2018-04-26 14:06:59.000000000 -0700
++++ "build\\binary\\gpgme\\work\\lib/cmake/QGpgme/QGpgmeConfig.cmake"	2018-04-27 05:33:44.429770200 -0700
+@@ -62,38 +62,16 @@
+ add_library(QGpgme SHARED IMPORTED)
+ 
+ set_target_properties(QGpgme PROPERTIES
+-  IMPORTED_IMPLIB_RELEASE "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libqgpgme.dll.a"
+-  INTERFACE_INCLUDE_DIRECTORIES "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/include/qgpgme;/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/include"
++  IMPORTED_IMPLIB_RELEASE "C:/Users/User/CraftRoot/lib/libqgpgme.dll.a"
++  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/User/CraftRoot/include/qgpgme;C:/Users/User/CraftRoot/include"
+   INTERFACE_LINK_LIBRARIES "Gpgmepp;Qt5::Core"
+-  IMPORTED_LOCATION "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libqgpgme-7.dll"
++  IMPORTED_LOCATION "C:/Users/User/CraftRoot/lib/libqgpgme-7.dll"
+ )
+ 
+-list(APPEND _IMPORT_CHECK_TARGETS QGgpme )
+-list(APPEND _IMPORT_CHECK_FILES_FOR_Qgpgme "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libqgpgme.dll.a" "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/bin/libqgpgme-7.dll" )
+-
+ if(CMAKE_VERSION VERSION_LESS 2.8.12)
+   message(FATAL_ERROR "This file relies on consumers using CMake 2.8.12 or greater.")
+ endif()
+ 
+-# Loop over all imported files and verify that they actually exist
+-foreach(target ${_IMPORT_CHECK_TARGETS} )
+-  foreach(file ${_IMPORT_CHECK_FILES_FOR_${target}} )
+-    if(NOT EXISTS "${file}" )
+-      message(FATAL_ERROR "The imported target \"${target}\" references the file
+-   \"${file}\"
+-but this file does not exist.  Possible reasons include:
+-* The file was deleted, renamed, or moved to another location.
+-* An install or uninstall procedure did not complete successfully.
+-* The installation package was faulty and contained
+-   \"${CMAKE_CURRENT_LIST_FILE}\"
+-but not all the files it references.
+-")
+-    endif()
+-  endforeach()
+-  unset(_IMPORT_CHECK_FILES_FOR_${target})
+-endforeach()
+-unset(_IMPORT_CHECK_TARGETS)
+-
+ # This file does not depend on other imported targets which have
+ # been exported from the same project but in a separate export set.
+ 

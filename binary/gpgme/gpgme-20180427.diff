@@ -1,6 +1,6 @@
-diff -Nrub foo/gpgme-1.10.0.orig/include/QGpgME/dataprovider.h foo/gpgme-1.10.0/include/QGpgME/dataprovider.h
---- foo/gpgme-1.10.0.orig/include/QGpgME/dataprovider.h	2018-04-26 14:06:59.000000000 -0700
-+++ foo/gpgme-1.10.0/include/QGpgME/dataprovider.h	2018-04-27 05:38:24.574359600 -0700
+diff -Nrub -x '*~' -x '*.rej' -x gpgme-1.10.0.orig '-x*.o' -x '*.pyc' gpgme-1.10.0.orig/include/QGpgME/dataprovider.h gpgme-1.10.0/include/QGpgME/dataprovider.h
+--- gpgme-1.10.0.orig/include/QGpgME/dataprovider.h	2018-05-01 08:00:43.000000000 -0700
++++ gpgme-1.10.0/include/QGpgME/dataprovider.h	2018-05-01 13:31:38.600239700 -0700
 @@ -55,8 +55,8 @@
      {
          return true;
@@ -23,9 +23,9 @@ diff -Nrub foo/gpgme-1.10.0.orig/include/QGpgME/dataprovider.h foo/gpgme-1.10.0/
      off_t seek(off_t offset, int whence);
      void release();
  
-diff -Nrub foo/gpgme-1.10.0.orig/include/QGpgME/encryptjob.h foo/gpgme-1.10.0/include/QGpgME/encryptjob.h
---- foo/gpgme-1.10.0.orig/include/QGpgME/encryptjob.h	2018-04-26 14:06:59.000000000 -0700
-+++ foo/gpgme-1.10.0/include/QGpgME/encryptjob.h	2018-04-27 05:38:24.574359600 -0700
+diff -Nrub -x '*~' -x '*.rej' -x gpgme-1.10.0.orig '-x*.o' -x '*.pyc' gpgme-1.10.0.orig/include/QGpgME/encryptjob.h gpgme-1.10.0/include/QGpgME/encryptjob.h
+--- gpgme-1.10.0.orig/include/QGpgME/encryptjob.h	2018-05-01 08:00:43.000000000 -0700
++++ gpgme-1.10.0/include/QGpgME/encryptjob.h	2018-05-01 13:31:38.604150200 -0700
 @@ -90,7 +90,7 @@
         not be performed, but full validity assumed for all keys
         without further checks.
@@ -35,9 +35,9 @@ diff -Nrub foo/gpgme-1.10.0.orig/include/QGpgME/encryptjob.h foo/gpgme-1.10.0/in
              const QByteArray &plainText, bool alwaysTrust = false) = 0;
  
      /*!
-diff -Nrub foo/gpgme-1.10.0.orig/include/QGpgME/signjob.h foo/gpgme-1.10.0/include/QGpgME/signjob.h
---- foo/gpgme-1.10.0.orig/include/QGpgME/signjob.h	2018-04-26 14:06:59.000000000 -0700
-+++ foo/gpgme-1.10.0/include/QGpgME/signjob.h	2018-04-27 05:38:24.574359600 -0700
+diff -Nrub -x '*~' -x '*.rej' -x gpgme-1.10.0.orig '-x*.o' -x '*.pyc' gpgme-1.10.0.orig/include/QGpgME/signjob.h gpgme-1.10.0/include/QGpgME/signjob.h
+--- gpgme-1.10.0.orig/include/QGpgME/signjob.h	2018-05-01 08:00:43.000000000 -0700
++++ gpgme-1.10.0/include/QGpgME/signjob.h	2018-05-01 13:31:38.607079600 -0700
 @@ -85,7 +85,7 @@
         Starts the signing operation. \a signers is the list of keys to
         sign \a plainText with. Empty (null) keys are ignored.
@@ -47,9 +47,9 @@ diff -Nrub foo/gpgme-1.10.0.orig/include/QGpgME/signjob.h foo/gpgme-1.10.0/inclu
              const QByteArray &plainText,
              GpgME::SignatureMode mode) = 0;
  
-diff -Nrub foo/gpgme-1.10.0.orig/include/gpgme++/data.h foo/gpgme-1.10.0/include/gpgme++/data.h
---- foo/gpgme-1.10.0.orig/include/gpgme++/data.h	2018-04-26 14:06:59.000000000 -0700
-+++ foo/gpgme-1.10.0/include/gpgme++/data.h	2018-04-27 05:37:52.287586300 -0700
+diff -Nrub -x '*~' -x '*.rej' -x gpgme-1.10.0.orig '-x*.o' -x '*.pyc' gpgme-1.10.0.orig/include/gpgme++/data.h gpgme-1.10.0/include/gpgme++/data.h
+--- gpgme-1.10.0.orig/include/gpgme++/data.h	2018-05-01 08:00:43.000000000 -0700
++++ gpgme-1.10.0/include/gpgme++/data.h	2018-05-01 13:31:38.612004900 -0700
 @@ -106,8 +106,8 @@
      char *fileName() const;
      Error setFileName(const char *name);
@@ -61,9 +61,9 @@ diff -Nrub foo/gpgme-1.10.0.orig/include/gpgme++/data.h foo/gpgme-1.10.0/include
      off_t seek(off_t offset, int whence);
  
      /** Try to parse the data to a key object using the
-diff -Nrub foo/gpgme-1.10.0.orig/include/gpgme++/interfaces/dataprovider.h foo/gpgme-1.10.0/include/gpgme++/interfaces/dataprovider.h
---- foo/gpgme-1.10.0.orig/include/gpgme++/interfaces/dataprovider.h	2018-04-26 14:06:59.000000000 -0700
-+++ foo/gpgme-1.10.0/include/gpgme++/interfaces/dataprovider.h	2018-04-27 05:37:52.287586300 -0700
+diff -Nrub -x '*~' -x '*.rej' -x gpgme-1.10.0.orig '-x*.o' -x '*.pyc' gpgme-1.10.0.orig/include/gpgme++/interfaces/dataprovider.h gpgme-1.10.0/include/gpgme++/interfaces/dataprovider.h
+--- gpgme-1.10.0.orig/include/gpgme++/interfaces/dataprovider.h	2018-05-01 08:00:43.000000000 -0700
++++ gpgme-1.10.0/include/gpgme++/interfaces/dataprovider.h	2018-05-01 13:31:38.615894400 -0700
 @@ -44,8 +44,8 @@
      };
      virtual bool isSupported(Operation op) const = 0;
@@ -75,9 +75,9 @@ diff -Nrub foo/gpgme-1.10.0.orig/include/gpgme++/interfaces/dataprovider.h foo/g
      virtual off_t seek(off_t offset, int whence) = 0;
      virtual void release() = 0;
  };
-diff -Nrub foo/gpgme-1.10.0.orig/include/gpgme++/key.h foo/gpgme-1.10.0/include/gpgme++/key.h
---- foo/gpgme-1.10.0.orig/include/gpgme++/key.h	2018-04-26 14:06:59.000000000 -0700
-+++ foo/gpgme-1.10.0/include/gpgme++/key.h	2018-04-27 05:37:52.287586300 -0700
+diff -Nrub -x '*~' -x '*.rej' -x gpgme-1.10.0.orig '-x*.o' -x '*.pyc' gpgme-1.10.0.orig/include/gpgme++/key.h gpgme-1.10.0/include/gpgme++/key.h
+--- gpgme-1.10.0.orig/include/gpgme++/key.h	2018-05-01 08:00:43.000000000 -0700
++++ gpgme-1.10.0/include/gpgme++/key.h	2018-05-01 13:31:38.620776300 -0700
 @@ -30,7 +30,7 @@
  #include "gpgmefw.h"
  
@@ -87,9 +87,9 @@ diff -Nrub foo/gpgme-1.10.0.orig/include/gpgme++/key.h foo/gpgme-1.10.0/include/
  
  #include <vector>
  #include <algorithm>
-diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/Gpgmepp/GpgmeppConfig.cmake foo/gpgme-1.10.0/lib/cmake/Gpgmepp/GpgmeppConfig.cmake
---- foo/gpgme-1.10.0.orig/lib/cmake/Gpgmepp/GpgmeppConfig.cmake	2018-04-26 14:06:59.000000000 -0700
-+++ foo/gpgme-1.10.0/lib/cmake/Gpgmepp/GpgmeppConfig.cmake	2018-04-27 05:17:06.512348800 -0700
+diff -Nrub -x '*~' -x '*.rej' -x gpgme-1.10.0.orig '-x*.o' -x '*.pyc' gpgme-1.10.0.orig/lib/cmake/Gpgmepp/GpgmeppConfig.cmake gpgme-1.10.0/lib/cmake/Gpgmepp/GpgmeppConfig.cmake
+--- gpgme-1.10.0.orig/lib/cmake/Gpgmepp/GpgmeppConfig.cmake	2018-05-01 08:00:43.000000000 -0700
++++ gpgme-1.10.0/lib/cmake/Gpgmepp/GpgmeppConfig.cmake	2018-05-01 13:34:17.966160200 -0700
 @@ -52,7 +52,7 @@
    return()
  endif()
@@ -99,22 +99,22 @@ diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/Gpgmepp/GpgmeppConfig.cmake foo/gpgme
  endif()
  unset(_targetsDefined)
  unset(_targetsNotDefined)
-@@ -62,37 +62,16 @@
+@@ -62,37 +62,17 @@
  add_library(Gpgmepp SHARED IMPORTED)
  
  set_target_properties(Gpgmepp PROPERTIES
--  IMPORTED_IMPLIB "/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/lib/libgpgmepp.dll.a"
--  INTERFACE_INCLUDE_DIRECTORIES "/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/include/gpgme++;/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/include"
--  INTERFACE_LINK_LIBRARIES "pthread;/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/lib/libgpgme.dll.a;-L/build/gpg4win/src/playground/install/pkgs/libassuan-2.5.1/lib -lassuan -lws2_32 -L/build/gpg4win/src/playground/install/pkgs/libgpg-error-1.27/lib -lgpg-error"
--  IMPORTED_LOCATION "/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/bin/libgpgmepp-6.dll"
+-  IMPORTED_IMPLIB "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libgpgmepp.dll.a"
+-  INTERFACE_INCLUDE_DIRECTORIES "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/include/gpgme++;/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/include"
+-  INTERFACE_LINK_LIBRARIES "pthread;/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libgpgme.dll.a;-L/build/gpg4win/src/playground/install/pkgs/libassuan-2.5.1/lib -lassuan -lws2_32 -L/build/gpg4win/src/playground/install/pkgs/libgpg-error-1.27/lib -lgpg-error"
+-  IMPORTED_LOCATION "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/bin/libgpgmepp-6.dll"
 +  IMPORTED_IMPLIB "C:/Users/User/CraftRoot/lib/libgpgmepp.dll.a"
 +  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/User/CraftRoot/include/gpgme++;C:/Users/User/CraftRoot/include"
 +  INTERFACE_LINK_LIBRARIES "pthread;C:/Users/User/CraftRoot/lib/libgpgme.dll.a;-lassuan -lws2_32 -LC:/Users/User/CraftRoot/lib/ -lgpg-error"
 +  IMPORTED_LOCATION "C:/Users/User/CraftRoot/bin/libgpgmepp-6.dll"
  )
 -list(APPEND _IMPORT_CHECK_TARGETS Gpgmepp )
--list(APPEND _IMPORT_CHECK_FILES_FOR_Gpgmepp "/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/lib/libgpgmepp.dll.a" "/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/bin/libgpgmepp-6.dll" )
--
+-list(APPEND _IMPORT_CHECK_FILES_FOR_Gpgmepp "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libgpgmepp.dll.a" "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/bin/libgpgmepp-6.dll" )
+ 
  
  if(CMAKE_VERSION VERSION_LESS 2.8.12)
    message(FATAL_ERROR "This file relies on consumers using CMake 2.8.12 or greater.")
@@ -141,10 +141,10 @@ diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/Gpgmepp/GpgmeppConfig.cmake foo/gpgme
  
  # Commands beyond this point should not need to know the version.
  set(CMAKE_IMPORT_FILE_VERSION)
-diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeConfig.cmake foo/gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeConfig.cmake
---- foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeConfig.cmake	2018-04-26 14:06:59.000000000 -0700
-+++ foo/gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeConfig.cmake	2018-04-27 05:17:06.512348800 -0700
-@@ -1,105 +1,27 @@
+diff -Nrub -x '*~' -x '*.rej' -x gpgme-1.10.0.orig '-x*.o' -x '*.pyc' gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeConfig.cmake gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeConfig.cmake
+--- gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeConfig.cmake	2018-05-01 08:00:43.000000000 -0700
++++ gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeConfig.cmake	2018-05-01 13:35:14.452616900 -0700
+@@ -1,105 +1,26 @@
 -# CMake Config file for QGPGME.
 -# Copyright (C) 2016 Intevation GmbH
 -#
@@ -188,7 +188,9 @@ diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeConfig.cmake foo/gpgme-1
 -  list(APPEND _expectedTargets ${_expectedTarget})
 -  if(NOT TARGET ${_expectedTarget})
 -    list(APPEND _targetsNotDefined ${_expectedTarget})
-+
+-  endif()
+-  if(TARGET ${_expectedTarget})
+-    list(APPEND _targetsDefined ${_expectedTarget})
 +####### Expanded from @PACKAGE_INIT@ by configure_package_config_file() #######
 +####### Any changes to this file will be overwritten by the next CMake run ####
 +####### The input file was QGpgmeConfig.cmake.in                            ########
@@ -199,16 +201,6 @@ diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeConfig.cmake foo/gpgme-1
 +  set(${_var} "${_file}")
 +  if(NOT EXISTS "${_file}")
 +    message(FATAL_ERROR "File or directory ${_file} referenced by variable ${_var} does not exist !")
-   endif()
--  if(TARGET ${_expectedTarget})
--    list(APPEND _targetsDefined ${_expectedTarget})
-+endmacro()
-+
-+macro(check_required_components _NAME)
-+  foreach(comp ${${_NAME}_FIND_COMPONENTS})
-+    if(NOT ${_NAME}_${comp}_FOUND)
-+      if(${_NAME}_FIND_REQUIRED_${comp})
-+        set(${_NAME}_FOUND FALSE)
    endif()
 -endforeach()
 -if("${_targetsDefined}" STREQUAL "${_expectedTargets}")
@@ -225,16 +217,17 @@ diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeConfig.cmake foo/gpgme-1
 -
 -# Create imported target QGpgme
 -add_library(QGpgme SHARED IMPORTED)
--
++endmacro()
+ 
 -set_target_properties(QGpgme PROPERTIES
--  IMPORTED_IMPLIB_RELEASE "/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/lib/libqgpgme.dll.a"
--  INTERFACE_INCLUDE_DIRECTORIES "/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/include/qgpgme;/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/include"
+-  IMPORTED_IMPLIB_RELEASE "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libqgpgme.dll.a"
+-  INTERFACE_INCLUDE_DIRECTORIES "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/include/qgpgme;/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/include"
 -  INTERFACE_LINK_LIBRARIES "Gpgmepp;Qt5::Core"
--  IMPORTED_LOCATION "/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/lib/libqgpgme-7.dll"
+-  IMPORTED_LOCATION "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libqgpgme-7.dll"
 -)
 -
 -list(APPEND _IMPORT_CHECK_TARGETS QGgpme )
--list(APPEND _IMPORT_CHECK_FILES_FOR_Qgpgme "/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/lib/libqgpgme.dll.a" "/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/bin/libqgpgme-7.dll" )
+-list(APPEND _IMPORT_CHECK_FILES_FOR_Qgpgme "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/lib/libqgpgme.dll.a" "/build/gpg4win/src/playground/install/pkgs/gpgme-1.10.0/bin/libqgpgme-7.dll" )
 -
 -if(CMAKE_VERSION VERSION_LESS 2.8.12)
 -  message(FATAL_ERROR "This file relies on consumers using CMake 2.8.12 or greater.")
@@ -253,6 +246,12 @@ diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeConfig.cmake foo/gpgme-1
 -   \"${CMAKE_CURRENT_LIST_FILE}\"
 -but not all the files it references.
 -")
++macro(check_required_components _NAME)
++  foreach(comp ${${_NAME}_FIND_COMPONENTS})
++    if(NOT ${_NAME}_${comp}_FOUND)
++      if(${_NAME}_FIND_REQUIRED_${comp})
++        set(${_NAME}_FOUND FALSE)
++  endif()
      endif()
    endforeach()
 -  unset(_IMPORT_CHECK_FILES_FOR_${target})
@@ -261,20 +260,19 @@ diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeConfig.cmake foo/gpgme-1
 -
 -# This file does not depend on other imported targets which have
 -# been exported from the same project but in a separate export set.
--
++endmacro()
+ 
 -# Commands beyond this point should not need to know the version.
 -set(CMAKE_IMPORT_FILE_VERSION)
 -cmake_policy(POP)
-+endmacro()
-+
 +####################################################################################
  
 -# Gpgmepp is a requirement for qgpgme
 -find_package(Gpgmepp CONFIG REQUIRED)
 +include("${CMAKE_CURRENT_LIST_DIR}/QGpgmeTargets.cmake")
-diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeTargets-relwithdebinfo.cmake foo/gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeConfig.cmake
---- foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeTargets-relwithdebinfo.cmake	2018-04-26 14:06:59.000000000 -0700
-+++ foo/gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeTargets-relwithdebinfo.cmake	2018-04-27 05:17:06.512348800 -0700
+diff -Nrub -x '*~' -x '*.rej' -x gpgme-1.10.0.orig '-x*.o' -x '*.pyc' gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeTargets-relwithdebinfo.cmake gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeTargets-relwithdebinfo.cmake
+--- gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeTargets-relwithdebinfo.cmake	1969-12-31 16:00:00.000000000 -0800
++++ gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeTargets-relwithdebinfo.cmake	2018-05-01 13:31:38.674454200 -0700
 @@ -0,0 +1,19 @@
 +#----------------------------------------------------------------
 +# Generated CMake target import file for configuration "RelWithDebInfo".
@@ -295,9 +293,9 @@ diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeTargets-relwithdebinfo.c
 +
 +# Commands beyond this point should not need to know the version.
 +set(CMAKE_IMPORT_FILE_VERSION)
-diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeTargets.cmake foo/gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeConfig.cmake
---- foo/gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeTargets.cmake	2018-04-26 14:06:59.000000000 -0700
-+++ foo/gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeTargets.cmake	2018-04-27 05:17:06.512348800 -0700
+diff -Nrub -x '*~' -x '*.rej' -x gpgme-1.10.0.orig '-x*.o' -x '*.pyc' gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeTargets.cmake gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeTargets.cmake
+--- gpgme-1.10.0.orig/lib/cmake/QGpgme/QGpgmeTargets.cmake	1969-12-31 16:00:00.000000000 -0800
++++ gpgme-1.10.0/lib/cmake/QGpgme/QGpgmeTargets.cmake	2018-05-01 13:31:38.679353200 -0700
 @@ -0,0 +1,99 @@
 +# Generated by CMake
 +

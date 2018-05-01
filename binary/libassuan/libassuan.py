@@ -14,13 +14,10 @@ class subinfo(info.infoclass):
     def setDependencies(self):
         self.runtimeDependencies["virtual/bin-base"] = "default"
 
-
-class PackageBin(BinaryPackageBase):
+class Package(BinaryPackageBase):
     def __init__(self):
         BinaryPackageBase.__init__(self)
-        self.subinfo.options.package.withCompiler = False
-        self.subinfo.options.package.withSources = False
 
-class Package(PackageBin):
-    def __init__(self):
-        PackageBin.__init__(self)
+    def install(self):
+        self.cleanImage()
+        return utils.copyDir(os.path.join(self.sourceDir(), "libassuan-2.5.1.7z"), self.installDir(), linkOnly=False)

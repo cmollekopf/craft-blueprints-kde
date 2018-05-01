@@ -16,14 +16,13 @@ class subinfo(info.infoclass):
     def setDependencies(self):
         self.runtimeDependencies["virtual/bin-base"] = "default"
         self.buildDependencies["win32libs/pthreads"] = "default"
+        self.runtimeDependencies["binary/libgpg-error"] = "default"
+        self.runtimeDependencies["binary/libassuan"] = "default"
 
-
-class PackageBin(BinaryPackageBase):
+class Package(BinaryPackageBase):
     def __init__(self):
         BinaryPackageBase.__init__(self)
-        self.subinfo.options.package.withCompiler = False
-        self.subinfo.options.package.withSources = False
 
-class Package(PackageBin):
-    def __init__(self):
-        PackageBin.__init__(self)
+    def install(self):
+        self.cleanImage()
+        return utils.copyDir(os.path.join(self.sourceDir(), "gpgme-1.10.0"), self.installDir(), linkOnly=False)

@@ -109,7 +109,7 @@ diff -Nrub foo/gpgme-1.10.0.orig/lib/cmake/Gpgmepp/GpgmeppConfig.cmake foo/gpgme
 -  IMPORTED_LOCATION "/build/gpg4win/src/playground/install/pkgs/foo/gpgme-1.10.0/bin/libgpgmepp-6.dll"
 +  IMPORTED_IMPLIB "C:/Users/User/CraftRoot/lib/libgpgmepp.dll.a"
 +  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/User/CraftRoot/include/gpgme++;C:/Users/User/CraftRoot/include"
-+  INTERFACE_LINK_LIBRARIES "pthread;C:/Users/User/CraftRoot/lib/libgpgme.dll.a;-lassuan -lws2_32 -LC:/Users/User/CraftRoot/lib/ -lgpg-error"
++  INTERFACE_LINK_LIBRARIES "pthreads;C:/Users/User/CraftRoot/lib/libgpgme.dll.a;-lassuan -lws2_32 -LC:/Users/User/CraftRoot/lib/ -lgpg-error"
 +  IMPORTED_LOCATION "C:/Users/User/CraftRoot/bin/libgpgmepp-6.dll"
  )
 -list(APPEND _IMPORT_CHECK_TARGETS Gpgmepp )

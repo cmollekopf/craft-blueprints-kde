@@ -25,7 +25,7 @@ class subinfo(info.infoclass):
         self.buildDependencies["extragear/sink"] = "default"
         self.buildDependencies["extragear/kasync"] = "default"
         if OsUtils.isWin():
-            self.runtimeDependencies["win32libs/gpgme"] = "default"
+            self.runtimeDependencies["binary/gpgme"] = "default"
         else:
             self.runtimeDependencies["autotools/gpgme-src"] = "default"
 

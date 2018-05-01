@@ -20,4 +20,4 @@ class Package(BinaryPackageBase):
 
     def install(self):
         self.cleanImage()
-        return utils.copyDir(os.path.join(self.sourceDir(), "libassuan-2.5.1.7z"), self.installDir(), linkOnly=False)
+        return utils.copyDir(os.path.join(self.sourceDir(), "libassuan-2.5.1"), self.installDir(), linkOnly=False)

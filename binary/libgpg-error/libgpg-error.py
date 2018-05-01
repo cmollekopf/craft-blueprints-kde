@@ -20,4 +20,4 @@ class Package(BinaryPackageBase):
 
     def install(self):
         self.cleanImage()
-        return utils.copyDir(os.path.join(self.sourceDir(), "libgpg-error-1.27.7z"), self.installDir(), linkOnly=False)
+        return utils.copyDir(os.path.join(self.sourceDir(), "libgpg-error-1.27"), self.installDir(), linkOnly=False)

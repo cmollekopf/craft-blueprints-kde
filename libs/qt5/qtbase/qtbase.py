@@ -77,7 +77,7 @@ class subinfo(info.infoclass):
         if not self.options.buildStatic:
             self.runtimeDependencies["win32libs/openssl"] = None if CraftVersion(self.buildTarget) < CraftVersion("5.10") else "1.1"
             self.runtimeDependencies["win32libs/dbus"] = None
-            self.runtimeDependencies["binary/mysql"] = None
+            #self.runtimeDependencies["binary/mysql"] = None
             self.runtimeDependencies["win32libs/icu"] = None
             self.runtimeDependencies["win32libs/zlib"] = None
 

@@ -8,7 +8,7 @@ class subinfo(info.infoclass):
     def setTargets(self):
         for version in ['1.10.0']:
             self.targets[version] = "http://www.foobar.org/gpgme-1.10.0.7z"
-        self.patchToApply["1.10.0"] = [("gpgme-20180427.diff", 0)]
+        self.patchToApply["1.10.0"] = [("gpgme-20180427.diff", 1)]
 
         self.description = "gpgme"
         self.defaultTarget = '1.10.0'

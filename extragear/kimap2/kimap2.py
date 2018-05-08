@@ -10,10 +10,10 @@ class subinfo(info.infoclass):
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"
         self.buildDependencies["frameworks/extra-cmake-modules"] = "default"
-        self.buildDependencies["libs/qt5/qtbase"] = "default"
-        self.buildDependencies["frameworks/tier1/kcoreaddons"] = "default"
-        self.buildDependencies["kde/pim/kmime"] = "default"
-        self.buildDependencies["win32libs/cyrus-sasl"] = "default"
+        self.runtimeDependencies["libs/qt5/qtbase"] = "default"
+        self.runtimeDependencies["frameworks/tier1/kcoreaddons"] = "default"
+        self.runtimeDependencies["kde/pim/kmime"] = "default"
+        self.runtimeDependencies["win32libs/cyrus-sasl"] = "default"
 
 
 from Package.CMakePackageBase import *

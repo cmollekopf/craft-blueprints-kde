@@ -36,3 +36,16 @@ from Package.CMakePackageBase import *
 class Package(CMakePackageBase):
     def __init__(self):
         CMakePackageBase.__init__(self)
+
+    def createPackage(self):
+        self.blacklist_file.append(os.path.join(self.packageDir(), 'blacklist.txt'))
+        self.defines["productname"] = "Kube"
+        self.defines["executable"] = "bin\\kube.exe"
+        # self.defines["icon"] = os.path.join(self.packageDir(), "kate.ico")
+        # TODO:  find a way to extend the default script
+        self.scriptname = os.path.join(self.packageDir(), "NullsoftInstaller.nsi")
+
+        self.ignoredPackages.append("binary/mysql")
+        self.ignoredPackages.append("win32libs/dbus")
+
+        return TypePackager.createPackage(self)

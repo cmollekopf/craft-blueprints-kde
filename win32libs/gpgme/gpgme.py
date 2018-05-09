@@ -1,16 +1,12 @@
 import info
 
-
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.addCachedAutotoolsBuild(f"https://files.kde.org/craft/autotools/2018.02/windows/mingw_{CraftCore.compiler.bits}/gcc/Release/", "autotools/gpgme-src")
+        self.targets["2.2.7_2018050"] = "https://www.gnupg.org/ftp/gcrypt/binary/gnupg-w32-2.2.7_20180502.exe"
+        self.defaultTarget = "2.2.7_2018050"
 
     def setDependencies(self):
         self.runtimeDependencies['virtual/base'] = 'default'
-        self.runtimeDependencies["win32libs/mingw-crt4msvc"] = "default"
-        self.runtimeDependencies['win32libs/assuan2'] = 'default'
-        self.runtimeDependencies["win32libs/gpg-error"] = "default"
-        self.runtimeDependencies["win32libs/pthreads"] = "default"
 
 
 from Package.BinaryPackageBase import *
@@ -18,3 +14,6 @@ from Package.BinaryPackageBase import *
 class Package(BinaryPackageBase):
     def __init__(self, **args):
         BinaryPackageBase.__init__(self)
+        #Disable windows UAC to avoid the dialog when running the installer
+        self.subinfo.options.unpack.runInstaller = True
+        self.subinfo.options.configure.args = "/S /D={0}".format(self.workDir())

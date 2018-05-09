@@ -7,22 +7,11 @@ class subinfo(info.infoclass):
 
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"
-        if CraftCore.compiler.isGCCLike():
-            self.runtimeDependencies["autotools/gcrypt-src"] = "default"
-        else:
-            self.runtimeDependencies["win32libs/mingw-crt4msvc"] = "default"
-            self.runtimeDependencies["win32libs/gpg-error"] = "default"
-
+        self.runtimeDependencies["win32libs/mingw-crt4msvc"] = "default"
+        self.runtimeDependencies["win32libs/gpg-error"] = "default"
 
 from Package.BinaryPackageBase import *
-from Package.MaybeVirtualPackageBase import *
 
-
-class BinPackage(BinaryPackageBase):
+class Package(BinaryPackageBase):
     def __init__(self, **args):
         BinaryPackageBase.__init__(self)
-
-
-class Package(MaybeVirtualPackageBase):
-    def __init__(self):
-        MaybeVirtualPackageBase.__init__(self, not CraftCore.compiler.isGCCLike(), classA=BinPackage)

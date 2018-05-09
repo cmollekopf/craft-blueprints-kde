@@ -9,12 +9,7 @@ class subinfo( info.infoclass ):
         self.runtimeDependencies["virtual/base"] = "default"
 
 from Package.BinaryPackageBase import *
-from Package.MaybeVirtualPackageBase import *
 
-class BinPackage(BinaryPackageBase):
+class Package(BinaryPackageBase):
     def __init__(self, **args):
         BinaryPackageBase.__init__(self)
-
-class Package(MaybeVirtualPackageBase):
-    def __init__(self):
-        MaybeVirtualPackageBase.__init__(self, CraftCore.compiler.isMSVC(), classA=BinPackage)

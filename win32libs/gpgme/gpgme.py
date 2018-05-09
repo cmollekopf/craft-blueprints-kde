@@ -10,6 +10,7 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["win32libs/mingw-crt4msvc"] = "default"
         self.runtimeDependencies['win32libs/assuan2'] = 'default'
         self.runtimeDependencies["win32libs/gpg-error"] = "default"
+        self.runtimeDependencies["win32libs/pthreads"] = "default"
 
 
 from Package.BinaryPackageBase import *

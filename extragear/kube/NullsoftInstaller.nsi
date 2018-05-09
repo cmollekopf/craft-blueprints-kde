@@ -100,6 +100,8 @@ ${EndIf}
 ; assume files are in the correct places
 
 File /a /r /x "*.nsi" /x "@{setupname}" "@{srcdir}\*.*"
+; Hack because gpgme doesn't deliver the file (but it's available from msys)
+File /a /oname=bin\libwinpthread-1.dll "@{srcdir}\..\..\..\..\msys\mingw64\bin\libwinpthread-1.dll"
 
 WriteUninstaller "${uninstaller}"
 

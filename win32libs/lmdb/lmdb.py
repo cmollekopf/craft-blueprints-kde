@@ -9,7 +9,7 @@ class subinfo(info.infoclass):
             self.targetInstSrc[ver] = 'lmdb-LMDB_' + ver + '/libraries/liblmdb'
             self.patchToApply[ver] = [('lmdb-LMDB_0.9.16-20151004.diff', 3)]
 
-        self.svnTargets['sparsewin32'] = "https://github.com/cmollekopf/lmdb|0.9.22_sparsewin32"
+        self.svnTargets['sparsewin32'] = "https://github.com/cmollekopf/lmdb.git|0.9.22_sparsewin32"
         self.targetInstSrc['sparsewin32'] = 'lmdb-LMDB_0.9.22/libraries/liblmdb'
 
         self.description = 'in memory database from the openldap project'

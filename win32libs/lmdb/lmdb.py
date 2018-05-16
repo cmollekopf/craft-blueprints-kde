@@ -9,8 +9,15 @@ class subinfo(info.infoclass):
             self.targetInstSrc[ver] = 'lmdb-LMDB_' + ver + '/libraries/liblmdb'
             self.patchToApply[ver] = [('lmdb-LMDB_0.9.16-20151004.diff', 3)]
 
+        self.svnTargets['sparsewin32'] = "https://github.com/cmollekopf/lmdb|0.9.22_sparsewin32"
+        self.targetInstSrc['sparsewin32'] = 'lmdb-LMDB_0.9.22/libraries/liblmdb'
+
         self.description = 'in memory database from the openldap project'
-        self.defaultTarget = '0.9.21'
+
+        if OsUtils.isWin():
+            self.defaultTarget = 'sparsewin32'
+        else:
+            self.defaultTarget = '0.9.21'
 
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"

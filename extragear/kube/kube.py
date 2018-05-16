@@ -41,7 +41,8 @@ class Package(CMakePackageBase):
         self.blacklist_file.append(os.path.join(self.packageDir(), 'blacklist.txt'))
         self.defines["productname"] = "Kube"
         self.defines["executable"] = "bin\\kube.exe"
-        # self.defines["icon"] = os.path.join(self.packageDir(), "kate.ico")
+        self.defines["icon"] = os.path.join(self.packageDir(), "kube.ico")
+        self.defines["website"] = "kube.kde.org"
         # TODO:  find a way to extend the default script
         self.scriptname = os.path.join(self.packageDir(), "NullsoftInstaller.nsi")
 

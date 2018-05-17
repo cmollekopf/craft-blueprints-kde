@@ -4,7 +4,7 @@ import info
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        for ver in ['0.9.21']:
+        for ver in ['0.9.22']:
             self.targets[ver] = 'https://github.com/LMDB/lmdb/archive/LMDB_' + ver + '.tar.gz'
             self.targetInstSrc[ver] = 'lmdb-LMDB_' + ver + '/libraries/liblmdb'
             self.patchToApply[ver] = [('lmdb-LMDB_0.9.16-20151004.diff', 3)]
@@ -17,7 +17,7 @@ class subinfo(info.infoclass):
         if OsUtils.isWin():
             self.defaultTarget = 'sparsewin32'
         else:
-            self.defaultTarget = '0.9.21'
+            self.defaultTarget = '0.9.22'
 
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"

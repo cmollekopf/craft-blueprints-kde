@@ -18,3 +18,10 @@ from Package.BinaryPackageBase import *
 class Package(BinaryPackageBase):
     def __init__(self, **args):
         BinaryPackageBase.__init__(self)
+
+    def unpack(self):
+        if not BinaryPackageBase.unpack(self): return False
+        utils.copyFile(os.path.join(self.imageDir(), "libexec", "gpgme-w32spawn.exe"),
+                       os.path.join(self.imageDir(), "bin", "gpgme-w32spawn.exe"))
+        shutil.rmtree(os.path.join(self.imageDir(), "libexec"))
+        return True

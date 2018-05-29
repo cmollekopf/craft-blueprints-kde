@@ -21,7 +21,7 @@ class Package(BinaryPackageBase):
 
     def unpack(self):
         if not BinaryPackageBase.unpack(self): return False
-        utils.copyFile(os.path.join(self.imageDir(), "libexec", "gpgme-w32spawn.exe"),
-                       os.path.join(self.imageDir(), "bin", "gpgme-w32spawn.exe"))
-        shutil.rmtree(os.path.join(self.imageDir(), "libexec"))
+        utils.copyFile(os.path.join(self.sourceDir(), "libexec", "gpgme-w32spawn.exe"),
+                       os.path.join(self.sourceDir(), "bin", "gpgme-w32spawn.exe"))
+        shutil.rmtree(os.path.join(self.sourceDir(), "libexec"))
         return True

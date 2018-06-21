@@ -38,10 +38,11 @@ class Package(CMakePackageBase):
         CMakePackageBase.__init__(self)
 
     def preArchive(self):
-        # Install the qml files
-        targetDir = os.path.join(self.archiveDir(), "Applications/KDE/kube.app/Contents/Resources/qml/")
-        utils.createDir(targetDir)
-        utils.copyDir(os.path.join(self.imageDir(), "lib", "qml", "org"), os.path.join(targetDir, "org"))
+        if OsUtils.isMac():
+            # Install the qml files
+            targetDir = os.path.join(self.archiveDir(), "Applications/KDE/kube.app/Contents/Resources/qml/")
+            utils.createDir(targetDir)
+            utils.copyDir(os.path.join(self.imageDir(), "lib", "qml", "org"), os.path.join(targetDir, "org"))
         return True
 
     def macdeployqt(self, appPath, targetLibdir, env):

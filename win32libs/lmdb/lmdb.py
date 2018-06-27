@@ -15,7 +15,7 @@ class subinfo(info.infoclass):
         self.description = 'in memory database from the openldap project'
 
         if OsUtils.isWin():
-            self.defaultTarget = 'sparsewin32'
+            self.defaultTarget = '0.9.22'
         else:
             self.defaultTarget = '0.9.22'
 

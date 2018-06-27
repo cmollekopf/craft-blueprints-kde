@@ -27,14 +27,13 @@ class subinfo(info.infoclass):
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"
         self.runtimeDependencies["win32libs/zlib"] = "default"
-        #Install using an installer. https://slproweb.com/download/Win64OpenSSL-1_1_0h.exe
-        #self.runtimeDependencies["win32libs/openssl"] = "default"
+        self.runtimeDependencies["win32libs/openssl"] = "default"
 
 
 class Package(CMakePackageBase):
     def __init__(self, **args):
         CMakePackageBase.__init__(self)
-        self.subinfo.options.configure.args = " -DBUILD_CURL_TESTS=OFF -DBUILD_CURL_EXE=OFF"
+        self.subinfo.options.configure.args = " -DBUILD_CURL_TESTS=OFF -DBUILD_CURL_EXE=OFF -DCMAKE_USE_OPENSSL=TRUE"
         self.subinfo.options.configure.testDefine = "-DBUILD_CURL_TESTS=ON"
         self.subinfo.options.configure.toolsDefine = "-DBUILD_CURL_EXE=ON"
         self.subinfo.options.configure.staticArgs = "-DCURL_STATICLIB=ON"

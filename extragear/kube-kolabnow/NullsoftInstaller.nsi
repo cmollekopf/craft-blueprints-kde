@@ -104,9 +104,6 @@ File /a /r /x "*.nsi" /x "@{setupname}" "@{srcdir}\*.*"
 File /a /oname=bin\libwinpthread-1.dll "@{srcdir}\..\..\..\..\msys\mingw64\bin\libwinpthread-1.dll"
 ; Because I don't know better how to add a qt.conf for the system qt version
 File /a /oname=bin\qt.conf "@{srcdir}\..\..\..\..\qt.conf"
-; Hack because qt doesn't ship openssl (installer from https://slproweb.com/download/Win64OpenSSL_Light-1_0_2o.exe)
-File /a /oname=bin\libeay32.dll "C:\OpenSSL-Win64\libeay32.dll"
-File /a /oname=bin\libssl32.dll "C:\OpenSSL-Win64\libssl32.dll"
 
 WriteUninstaller "${uninstaller}"
 

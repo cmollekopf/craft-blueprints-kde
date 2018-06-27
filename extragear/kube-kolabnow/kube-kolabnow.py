@@ -87,7 +87,7 @@ class Package(CMakePackageBase):
 
     def createPackage(self):
         self.defines["appname"] = "kube-kolabnow"
-        self.defines["productname"] = "Kube"
+        self.defines["productname"] = "Kube for Kolab Now"
         self.defines["executable"] = "bin\\kube.exe"
         self.defines["icon"] = os.path.join(self.packageDir(), "kube.ico")
         self.defines["website"] = "https://blogs.kolabnow.com/2017/09/27/kube-for-kolab-now"

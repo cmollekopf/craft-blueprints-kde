@@ -56,7 +56,8 @@ class Package(CMakePackageBase):
             appPath,
             "-qmldir=%s/Contents/Resources/qml" % appPath,
             "-verbose=2",
-            "-executable=%s/Contents/MacOS/sinksh -executable=%s/Contents/MacOS/sink_synchronizer" % (appPath, appPath),
+            "-executable=%s/Contents/MacOS/sinksh" % appPath,
+            "-executable=%s/Contents/MacOS/sink_synchronizer" % appPath,
             "-executable=%s/Contents/PlugIns/sink/resources/libsink_resource_caldav.dylib" % appPath,
             "-executable=%s/Contents/PlugIns/sink/resources/libsink_resource_carddav.dylib" % appPath,
             "-executable=%s/Contents/PlugIns/sink/resources/libsink_resource_imap.dylib" % appPath,
@@ -93,7 +94,7 @@ class Package(CMakePackageBase):
         self.defines["productname"] = "Kube"
         self.defines["executable"] = "bin\\kube.exe"
         self.defines["icon"] = os.path.join(self.packageDir(), "kube.ico")
-        self.defines["website"] = "kube.kde.org"
+        self.defines["website"] = "kube-project.com"
 
         if OsUtils.isWin():
             self.blacklist_file.append(os.path.join(self.packageDir(), 'blacklist.txt'))

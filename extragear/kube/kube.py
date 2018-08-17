@@ -85,9 +85,12 @@ class Package(CMakePackageBase):
                 "%s/Contents/Resources/qml/org/kube/accounts/%s/lib%saccountplugin.dylib" % (appPath, plugin, plugin)
                 ]
             if not utils.systemWithoutShell(cmd, env=env):
-                CraftCore.log.warning("Failed to run dylibbundler!")
+                CraftCore.log.warning("Failed to run install_name_tool!")
 
-        if not utils.systemWithoutShell(["macdeployqt", appPath, "-dmg"], env=env):
+        # Macdeployqt has a bug that it sets the full path as image name, which looks silly. QTBUG-60324
+        workingdir = os.path.dirname(os.path.normpath(appPath))
+        appDir = os.path.basename(os.path.normpath(appPath))
+        if not utils.systemWithoutShell(["macdeployqt", appDir, "-dmg"], env=env, cwd=workingdir):
             CraftCore.log.warning("Failed to run macdeployqt!")
 
     def createPackage(self):

@@ -69,6 +69,7 @@ class Package(CMakePackageBase):
             "-executable=%s/Contents/Resources/qml/org/kube/accounts/maildir/libmaildiraccountplugin.dylib" % appPath,
             "-executable=%s/Contents/Resources/qml/org/kube/accounts/imap/libimapaccountplugin.dylib" % appPath,
             "-executable=%s/Contents/Resources/qml/org/kube/accounts/gmail/libgmailaccountplugin.dylib" % appPath,
+            "-executable=%s/Contents/Resources/qml/org/kube/accounts/generic/libgenericaccountplugin.dylib" % appPath,
             "-libpath=%s/Contents/Resources/qml/org/kube/framework/" % appPath,
             ]
 
@@ -76,7 +77,7 @@ class Package(CMakePackageBase):
             CraftCore.log.warning("Failed to run macdeployqt!")
 
         # Fixup libframeworkplugin paths in remaining libs
-        for plugin in ["imap", "kolabnow", "maildir", "gmail"]:
+        for plugin in ["imap", "kolabnow", "maildir", "gmail", "generic"]:
             #FIXME I've hardcoded the expected path in the library
             cmd = ["install_name_tool",
                 "-change",

@@ -55,7 +55,8 @@ class Package(CMakePackageBase):
             appPath,
             "-qmldir=%s/Contents/Resources/qml" % appPath,
             "-verbose=2",
-            "-executable=%s/Contents/MacOS/sinksh -executable=%s/Contents/MacOS/sink_synchronizer" % (appPath, appPath),
+            "-executable=%s/Contents/MacOS/sinksh" % appPath,
+            "-executable=%s/Contents/MacOS/sink_synchronizer" % appPath,
             "-executable=%s/Contents/PlugIns/sink/resources/libsink_resource_caldav.dylib" % appPath,
             "-executable=%s/Contents/PlugIns/sink/resources/libsink_resource_carddav.dylib" % appPath,
             "-executable=%s/Contents/PlugIns/sink/resources/libsink_resource_imap.dylib" % appPath,
@@ -82,7 +83,10 @@ class Package(CMakePackageBase):
             if not utils.systemWithoutShell(cmd, env=env):
                 CraftCore.log.warning("Failed to run install_name_tool!")
 
-        if not utils.systemWithoutShell(["macdeployqt", appPath, "-dmg"], env=env):
+        # Macdeployqt has a bug that it sets the full path as image name, which looks silly. QTBUG-60324
+        workingdir = os.path.dirname(os.path.normpath(appPath))
+        appDir = os.path.basename(os.path.normpath(appPath))
+        if not utils.systemWithoutShell(["macdeployqt", appDir, "-dmg"], env=env, cwd=workingdir):
             CraftCore.log.warning("Failed to run macdeployqt!")
 
     def createPackage(self):

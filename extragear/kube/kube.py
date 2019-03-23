@@ -56,7 +56,8 @@ class Package(CMakePackageBase):
             appPath,
             "-qmldir=%s/Contents/Resources/qml" % appPath,
             "-verbose=2",
-            "-executable=%s/Contents/MacOS/sinksh -executable=%s/Contents/MacOS/sink_synchronizer" % (appPath, appPath),
+            "-executable=%s/Contents/MacOS/sinksh" % appPath,
+            "-executable=%s/Contents/MacOS/sink_synchronizer" % appPath,
             "-executable=%s/Contents/PlugIns/sink/resources/libsink_resource_caldav.dylib" % appPath,
             "-executable=%s/Contents/PlugIns/sink/resources/libsink_resource_carddav.dylib" % appPath,
             "-executable=%s/Contents/PlugIns/sink/resources/libsink_resource_imap.dylib" % appPath,
@@ -68,6 +69,7 @@ class Package(CMakePackageBase):
             "-executable=%s/Contents/Resources/qml/org/kube/accounts/maildir/libmaildiraccountplugin.dylib" % appPath,
             "-executable=%s/Contents/Resources/qml/org/kube/accounts/imap/libimapaccountplugin.dylib" % appPath,
             "-executable=%s/Contents/Resources/qml/org/kube/accounts/gmail/libgmailaccountplugin.dylib" % appPath,
+            "-executable=%s/Contents/Resources/qml/org/kube/accounts/generic/libgenericaccountplugin.dylib" % appPath,
             "-libpath=%s/Contents/Resources/qml/org/kube/framework/" % appPath,
             ]
 
@@ -75,7 +77,7 @@ class Package(CMakePackageBase):
             CraftCore.log.warning("Failed to run macdeployqt!")
 
         # Fixup libframeworkplugin paths in remaining libs
-        for plugin in ["imap", "kolabnow", "maildir", "gmail"]:
+        for plugin in ["imap", "kolabnow", "maildir", "gmail", "generic"]:
             #FIXME I've hardcoded the expected path in the library
             cmd = ["install_name_tool",
                 "-change",
@@ -84,16 +86,19 @@ class Package(CMakePackageBase):
                 "%s/Contents/Resources/qml/org/kube/accounts/%s/lib%saccountplugin.dylib" % (appPath, plugin, plugin)
                 ]
             if not utils.systemWithoutShell(cmd, env=env):
-                CraftCore.log.warning("Failed to run dylibbundler!")
+                CraftCore.log.warning("Failed to run install_name_tool!")
 
-        if not utils.systemWithoutShell(["macdeployqt", appPath, "-dmg"], env=env):
+        # Macdeployqt has a bug that it sets the full path as image name, which looks silly. QTBUG-60324
+        workingdir = os.path.dirname(os.path.normpath(appPath))
+        appDir = os.path.basename(os.path.normpath(appPath))
+        if not utils.systemWithoutShell(["macdeployqt", appDir, "-dmg"], env=env, cwd=workingdir):
             CraftCore.log.warning("Failed to run macdeployqt!")
 
     def createPackage(self):
         self.defines["productname"] = "Kube"
         self.defines["executable"] = "bin\\kube.exe"
         self.defines["icon"] = os.path.join(self.packageDir(), "kube.ico")
-        self.defines["website"] = "kube.kde.org"
+        self.defines["website"] = "kube-project.com"
 
         if OsUtils.isWin():
             self.blacklist_file.append(os.path.join(self.packageDir(), 'blacklist.txt'))

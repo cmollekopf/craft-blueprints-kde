@@ -3,7 +3,9 @@ import info
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.versionInfo.setDefaultValues()
+        self.svnTargets['master'] = "https://github.com/cmollekopf/extra-cmake-modules.git"
+        self.defaultTarget = 'master'
+        self.description = "Extra Cmake Modules"
 
     def setDependencies(self):
         self.runtimeDependencies["virtual/base"] = "default"

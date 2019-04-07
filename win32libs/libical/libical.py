@@ -3,8 +3,8 @@ import info
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.svnTargets['master'] = "https://github.com/cmollekopf/libical.git|master"
-        self.defaultTarget = 'master'
+        self.svnTargets['3.0'] = "https://github.com/cmollekopf/libical.git|3.0"
+        self.defaultTarget = '3.0'
 
         self.description = "Reference implementation of the icalendar data type and serialization format"
         self.webpage = "http://libical.github.io/libical/"

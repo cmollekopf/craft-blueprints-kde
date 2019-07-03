@@ -5,7 +5,7 @@ class subinfo(info.infoclass):
     def setTargets(self):
         self.versionInfo.setDefaultValues()
         self.description = "KCoreAddons"
-        self.patchToApply["5.51.0"] = [("kcoreaddons-5.44.0-20180413.diff", 1)]
+        self.patchToApply["5.51.0"] = [("kcoreaddons-5.51.0.diff", 1)]
 
     def setDependencies(self):
         self.buildDependencies["virtual/base"] = "default"

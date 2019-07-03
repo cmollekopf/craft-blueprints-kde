@@ -1,0 +1,19 @@
+diff -Nrub -x '*~' -x '*.rej' -x kcoreaddons-5.51.0.orig '-x*.o' -x '*.pyc' kcoreaddons-5.51.0.orig/src/lib/plugin/kexportplugin.h kcoreaddons-5.51.0/src/lib/plugin/kexportplugin.h
+--- kcoreaddons-5.51.0.orig/src/lib/plugin/kexportplugin.h	2018-10-08 01:11:36.000000000 -0700
++++ kcoreaddons-5.51.0/src/lib/plugin/kexportplugin.h	2019-07-03 12:53:02.110476900 -0700
+@@ -42,6 +42,7 @@
+ #else
+ #define Q_STANDARD_CALL
+ 
++/*
+ #ifndef KCOREADDONS_NO_DEPRECATED
+ class KCOREADDONS_DEPRECATED_EXPORT K_EXPORT_PLUGIN_is_deprecated_see_KDE5PORTING
+ {
+@@ -50,6 +51,7 @@
+ #define K_EXPORT_PLUGIN(factory) \
+     K_EXPORT_PLUGIN_is_deprecated_see_KDE5PORTING dummy;
+ #endif
++*/
+ 
+ #endif
+ 
